@@ -1,0 +1,140 @@
+/* ===== style.css: phong cách tạp chí, dùng chung 5 trang ===== */
+/* MÀU & CHUYỂN ĐỘNG: đổi tại đây */
+:root{--giay:#FAF7F2;--than:#1C2520;--la:#2D4F3E;--sen:#D98A9C;--vang:#C89D54;--e:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:400 1rem/1.8 "Be Vietnam Pro",sans-serif;background:var(--giay);color:var(--than);overflow-x:hidden;animation:vao .9s var(--e);transition:opacity .35s}
+body.roi{opacity:0}
+/* Lớp hạt nhiễu như giấy in (chỉnh opacity để đậm/nhạt) */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--vang);outline-offset:3px}
+h1,h2,h3,.logo{font-family:"Playfair Display",serif;font-weight:500;line-height:1.12}
+h1{font-size:clamp(3rem,8.5vw,7rem);letter-spacing:-.02em}
+h2{font-size:clamp(2rem,5vw,3.5rem);margin-bottom:18px}
+h3{font-size:1.5rem;margin-bottom:8px}
+p{max-width:56ch;color:rgba(28,37,32,.82)}
+.w{max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.sec{padding:clamp(72px,11vw,140px) 0}
+[hidden]{display:none!important}
+
+/* NAVBAR: trong suốt → kính mờ khi cuộn (.cuon) → ẩn khi cuộn nhanh (.an) */
+.nav{position:fixed;inset:0 0 auto;z-index:20;padding:26px 0;border-bottom:1px solid transparent;transition:transform .6s var(--e),padding .6s var(--e),background .6s,border-color .6s}
+.nav.cuon{padding:12px 0;background:rgba(250,247,242,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-color:rgba(28,37,32,.1)}
+.nav.an{transform:translateY(-100%)}
+.nav .w{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.5rem;text-decoration:none}
+.menu{display:flex;gap:30px;list-style:none;padding:0}
+.menu a{position:relative;text-decoration:none;font-size:.95rem;padding:4px 0}
+.menu a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .6s var(--e)}
+.menu a:hover::after,.menu a.on::after{transform:scaleX(1)}
+.menu a.on{color:var(--la);font-weight:600}
+.burger{display:none;background:none;border:0;font-size:1.7rem;cursor:pointer;color:inherit}
+@media(max-width:860px){
+ .burger{display:block}
+ .menu{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:16px;padding:20px 24px 28px;background:var(--giay);opacity:0;transform:translateY(-12px);pointer-events:none;transition:.5s var(--e)}
+ .menu.open{opacity:1;transform:none;pointer-events:auto}
+}
+
+/* HIỆU ỨNG TRỒI LÊN KHI CUỘN (JS thêm .hien) */
+.js .r{opacity:0;transform:translateY(30px);transition:opacity .9s var(--e),transform .9s var(--e);transition-delay:var(--d,0s)}
+.js .r.hien{opacity:1;transform:none}
+@keyframes vao{from{opacity:0}}
+@keyframes troi{from{transform:translateY(0) rotate(-12deg)}to{transform:translateY(-28px) rotate(8deg)}}
+@keyframes chay{to{transform:translateX(-50%)}}
+@keyframes len{from{opacity:0;transform:translateY(24px)}}
+@keyframes rung{25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-5px)}}
+
+/* ẢNH: khung vòm, zoom chậm + ánh sáng khi hover. Chưa có ảnh thì hiện nền gradient */
+.anh{position:relative;overflow:hidden;aspect-ratio:4/5;border-radius:999px 999px 22px 22px;background:#e8e0d4}
+.anh i{position:absolute;inset:0;background:var(--img,none) center/cover,linear-gradient(160deg,var(--sen),var(--la));transition:transform .7s var(--e)}
+.anh::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.4),transparent 55%);opacity:0;transition:opacity .7s}
+.anh:hover i{transform:scale(1.06)}.anh:hover::after{opacity:1}
+
+/* NÚT: nam châm + fill từ dưới lên */
+.nut{position:relative;isolation:isolate;overflow:hidden;display:inline-block;padding:16px 36px;margin-top:12px;border:1px solid var(--la);border-radius:99px;color:var(--la);text-decoration:none;font-weight:500;transition:color .5s var(--e),transform .3s}
+.nut::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--la);transform:translateY(101%);transition:transform .6s var(--e)}
+.nut:hover{color:var(--giay)}.nut:hover::before{transform:none}
+
+/* TRANG CHỦ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:120px 0 60px;overflow:hidden}
+.hg{position:relative;z-index:1;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
+.hero .anh{max-width:380px;width:100%;justify-self:end}
+.hero p{font-size:1.15rem;margin-top:24px}
+.song{position:absolute;top:-20%;right:-25%;width:75vmax;height:75vmax;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 46px,rgba(45,79,62,.1) 47px 48px)}
+.canh{position:absolute;width:80px;height:130px;background:linear-gradient(var(--sen),#f0c9d2);border-radius:50% 50% 50% 50%/70% 70% 30% 30%;opacity:.55;animation:troi 9s ease-in-out infinite alternate}
+.c1{left:5%;top:20%}.c2{right:42%;bottom:12%;width:56px;height:90px;background:linear-gradient(var(--vang),#e6cf9f);animation-duration:12s}
+@media(max-width:860px){.hg{grid-template-columns:1fr}.hero .anh{justify-self:start;max-width:260px}}
+.chay{overflow:hidden;white-space:nowrap;padding:22px 0;border-block:1px solid rgba(28,37,32,.15);font:italic 500 clamp(1.6rem,4vw,2.8rem) "Playfair Display",serif;color:var(--la)}
+.chay div{display:inline-block;animation:chay 38s linear infinite}
+.chay span{padding-right:2.2rem}
+.gt{position:relative;isolation:isolate;display:grid;grid-template-columns:4fr 6fr;gap:clamp(32px,7vw,100px);align-items:center}
+.so{position:absolute;z-index:-1;top:-6%;right:0;font:500 clamp(8rem,22vw,18rem)/1 "Playfair Display",serif;color:rgba(217,138,156,.2);pointer-events:none}
+.gt p+p{margin-top:16px}
+@media(max-width:860px){.gt{grid-template-columns:1fr}}
+.di a{display:block;padding:20px 0;border-top:1px solid rgba(28,37,32,.15);font:500 clamp(1.6rem,4vw,2.6rem) "Playfair Display",serif;text-decoration:none;transition:padding .6s var(--e),color .4s}
+.di a:hover{padding-left:24px;color:var(--sen)}
+
+/* TIÊU ĐỀ TRANG PHỤ */
+.ph{padding:clamp(150px,22vw,230px) 0 40px}.ph p{margin-top:18px;font-size:1.1rem}
+
+/* LỊCH SỬ: dòng thời gian (JS cập nhật --p theo mức cuộn) */
+.tl{position:relative;padding-left:44px}
+.tl::before,.dong{content:"";position:absolute;left:8px;top:0;width:1px;background:rgba(28,37,32,.2);bottom:0}
+.dong{background:var(--sen);bottom:auto;height:calc(var(--p,0)*100%)}
+.moc{position:relative;display:grid;grid-template-columns:minmax(120px,1fr) 3fr;gap:28px;padding-bottom:64px}
+.moc::before{content:"";position:absolute;left:-42px;top:12px;width:11px;height:11px;border-radius:50%;background:var(--giay);border:1px solid var(--la);transition:.6s var(--e)}
+.moc.hien::before{background:var(--vang);border-color:var(--vang);transform:scale(1.4)}
+.moc h3{font-size:clamp(1.4rem,3vw,2.2rem);color:var(--la)}
+@media(max-width:700px){.moc{grid-template-columns:1fr;gap:6px}}
+.ba{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.ba>:nth-child(2){margin-top:64px}.ba>:nth-child(3){margin-top:128px}
+.ba .anh{margin-bottom:20px}
+@media(max-width:860px){.ba{grid-template-columns:1fr}.ba>*{margin-top:0!important}}
+
+/* DU LỊCH: lọc + bố cục so le */
+.loc{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:64px}
+.loc button{font:inherit;padding:8px 22px;border:1px solid rgba(28,37,32,.25);border-radius:99px;background:none;color:inherit;cursor:pointer;transition:.4s var(--e)}
+.loc button:hover,.loc button.on{background:var(--la);color:var(--giay);border-color:var(--la)}
+.diem{position:relative;isolation:isolate;display:grid;grid-template-columns:5fr 7fr;gap:clamp(24px,5vw,72px);align-items:center;margin-bottom:clamp(64px,10vw,130px)}
+.diem.dao{grid-template-columns:7fr 5fr}.diem.dao .anh{order:2}.diem.dao .so{right:auto;left:0}
+.diem.lai{animation:len .7s var(--e)}
+@media(max-width:860px){.diem,.diem.dao{grid-template-columns:1fr}.diem.dao .anh{order:0}}
+
+/* ẨM THỰC: thực đơn + modal */
+.mon{display:flex;justify-content:space-between;align-items:baseline;gap:24px;width:100%;padding:26px 0;border:0;border-top:1px solid rgba(28,37,32,.18);background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:padding .6s var(--e),color .4s}
+.mon:hover{padding-left:20px;color:var(--la)}
+.mon b{font:500 clamp(1.5rem,3.6vw,2.4rem) "Playfair Display",serif}
+.mon span{max-width:30ch;font-size:.95rem;text-align:right;color:rgba(28,37,32,.7)}
+@media(max-width:700px){.mon{flex-direction:column;gap:4px}.mon span{text-align:left}}
+.md{border:0;border-radius:26px;width:min(520px,calc(100% - 32px));padding:44px 36px;background:var(--giay);color:var(--than)}
+.md[open]{animation:len .6s var(--e)}
+.md::backdrop{background:rgba(28,37,32,.55);backdrop-filter:blur(4px)}
+.md h2{font-size:2.2rem}.md p{margin-top:12px}.md b{color:var(--vang)}
+.md .x{position:absolute;top:14px;right:20px;border:0;background:none;font-size:2rem;cursor:pointer;color:inherit}
+
+/* TRẮC NGHIỆM: thẻ bài */
+.the{max-width:760px;margin:0 auto;padding:clamp(24px,5vw,56px);background:#fff;border:1px solid rgba(28,37,32,.08);border-radius:28px;box-shadow:0 30px 80px -30px rgba(28,37,32,.3)}
+.the.vao{animation:len .5s var(--e)}
+.the.ra{opacity:0;transform:translateX(-40px);transition:.3s var(--e)}
+.tt{display:flex;justify-content:space-between}
+.bar{height:6px;margin:10px 0 28px;background:#eee7dc;border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--vang);transition:width .8s var(--e)}
+.the h2{font-size:clamp(1.4rem,3vw,2rem)}
+.opt{display:flex;gap:14px;width:100%;margin-top:10px;padding:14px 18px;border:1px solid rgba(28,37,32,.2);border-radius:16px;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:.4s var(--e)}
+.opt b{color:var(--vang)}
+.opt:hover:not(:disabled){border-color:var(--la);transform:translateX(6px)}
+.opt.dung{background:#e6efe9;border-color:var(--la)}
+.opt.sai{background:#f7e4e8;border-color:var(--sen);animation:rung .45s}
+.fb{margin-top:18px;padding:14px 18px;border-radius:14px;background:#f6efe2}
+.the .nut{margin-top:20px;background:none;font:inherit}
+.ct{text-align:center}.ct p{margin:10px auto}
+.diem-so{font:500 5rem/1.1 "Playfair Display",serif;color:var(--sen)}
+.pao{position:fixed;inset:0;z-index:60;pointer-events:none}
+
+/* CHÂN TRANG */
+.foot{background:var(--la);color:var(--giay);padding:72px 0 36px}
+.foot p{color:rgba(250,247,242,.75)}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 26px;margin:24px 0}
+.foot .logo{font-size:clamp(2.2rem,6vw,4rem)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .r{opacity:1;transform:none}}

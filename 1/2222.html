@@ -1,0 +1,2317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ĐỒNG THÁP — Thuần Khiết Như Hồn Sen | Tạp Chí Du Lịch & Văn Hóa</title>
+  
+  <!-- Google Fonts: Cormorant Garamond (Tiêu đề nghệ thuật) & Be Vietnam Pro (Nội dung hiện đại) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#FAF7F2',
+            paperDark: '#F0EAE0',
+            charcoal: '#1C2520',
+            lotusGreen: '#2D4F3E',
+            lotusGreenLight: '#3E6B54',
+            lotusPink: '#D98A9C',
+            lotusGold: '#C89D54',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+          },
+          transitionTimingFunction: {
+            editorial: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       1. HỆ THỐNG BIẾN MÀU & CẤU TRÚC CƠ BẢN (ANTI-AI EDITORIAL DESIGN)
+       ========================================================================== */
+    :root {
+      --bg-paper: #FAF7F2;
+      --bg-paper-alt: #F2ECE1;
+      --text-charcoal: #1C2520;
+      --text-muted: #55615A;
+      --accent-green: #2D4F3E;
+      --accent-pink: #D98A9C;
+      --accent-gold: #C89D54;
+      --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-paper);
+      color: var(--text-charcoal);
+      font-family: 'Be Vietnam Pro', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-color: var(--bg-paper);
+      color: var(--text-charcoal);
+      line-height: 1.75;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       2. CHẤT LIỆU BỀ MẶT GIẤY MỸ THUẬT (SUBTLE SVG NOISE / GRAIN TEXTURE)
+       ========================================================================== */
+    .paper-grain-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Tùy chỉnh thanh cuộn tinh tế */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF7F2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C5BDB0;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2D4F3E;
+    }
+
+    /* ==========================================================================
+       3. SMART GLASSMORPHIC NAVBAR & MENU UNDERLINE
+       ========================================================================== */
+    .smart-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.35rem 0;
+      transition: 
+        transform 0.55s var(--ease-editorial),
+        padding 0.45s var(--ease-editorial),
+        background-color 0.45s var(--ease-editorial),
+        border-color 0.45s var(--ease-editorial),
+        color 0.45s var(--ease-editorial);
+      border-bottom: 1px solid transparent;
+    }
+
+    /* Trạng thái khi ở đầu trang chủ (nền tối hero) */
+    .smart-navbar.on-hero-top {
+      background-color: transparent;
+      color: #FAF7F2;
+    }
+
+    /* Trạng thái khi cuộn vượt 50px hoặc ở các trang nội dung */
+    .smart-navbar.scrolled {
+      padding: 0.85rem 0;
+      background-color: rgba(250, 247, 242, 0.84);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(45, 79, 62, 0.12);
+      color: #1C2520;
+      box-shadow: 0 4px 30px rgba(28, 37, 32, 0.04);
+    }
+
+    /* Ẩn khi cuộn xuống nhanh */
+    .smart-navbar.nav-hidden {
+      transform: translateY(-105%);
+    }
+
+    /* Hiệu ứng gạch chân chạy từ trái sang phải (scaleX) */
+    .nav-link-editorial {
+      position: relative;
+      display: inline-block;
+      padding: 0.3rem 0;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.35s var(--ease-editorial);
+    }
+
+    .nav-link-editorial::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.45s var(--ease-editorial);
+    }
+
+    .nav-link-editorial:hover::after,
+    .nav-link-editorial.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-link-editorial.active {
+      color: #C89D54;
+      font-weight: 600;
+    }
+    .smart-navbar.scrolled .nav-link-editorial.active {
+      color: #2D4F3E;
+    }
+    .smart-navbar.scrolled .nav-link-editorial.active::after {
+      background-color: #C89D54;
+      height: 2px;
+    }
+
+    /* ==========================================================================
+       4. HIỆU ỨNG CHUYỂN TRANG (SPA PAGE TRANSITION)
+       ========================================================================== */
+    .page-view {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.55s var(--ease-editorial), transform 0.55s var(--ease-editorial);
+    }
+
+    .page-view.active-page {
+      display: block;
+    }
+
+    .page-view.visible-page {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       5. SCROLL REVEAL (THÁC ĐỔ INTERSECTION OBSERVER)
+       ========================================================================== */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s var(--ease-editorial), transform 0.85s var(--ease-editorial);
+      will-change: opacity, transform;
+    }
+
+    .reveal-item.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       6. KHUNG HÌNH VÒM NGHỆ THUẬT & HIỆU ỨNG HOVER ZOOM
+       ========================================================================== */
+    .editorial-arch {
+      border-radius: 220px 220px 18px 18px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .editorial-frame {
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .img-zoom-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .img-zoom-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.75s var(--ease-editorial), filter 0.75s var(--ease-editorial);
+    }
+
+    .img-zoom-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0) 80%);
+      transform: translateX(-100%);
+      transition: transform 0.85s var(--ease-editorial);
+      pointer-events: none;
+    }
+
+    .img-zoom-wrapper:hover img,
+    .group:hover .img-zoom-wrapper img {
+      transform: scale(1.06);
+    }
+
+    .img-zoom-wrapper:hover::after,
+    .group:hover .img-zoom-wrapper::after {
+      transform: translateX(100%);
+    }
+
+    /* ==========================================================================
+       7. NÚT BẤM FILL MÀU TỪ DƯỚI LÊN (MAGNETIC / BOTTOM-UP FILL)
+       ========================================================================== */
+    .btn-editorial {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.95rem 2.1rem;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      overflow: hidden;
+      z-index: 1;
+      transition: color 0.45s var(--ease-editorial), border-color 0.45s var(--ease-editorial), transform 0.35s var(--ease-editorial);
+      cursor: pointer;
+    }
+
+    .btn-editorial::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      transform: translateY(102%);
+      transition: transform 0.45s var(--ease-editorial);
+      border-radius: 999px;
+    }
+
+    .btn-editorial:hover::before {
+      transform: translateY(0);
+    }
+
+    .btn-editorial:active {
+      transform: scale(0.97);
+    }
+
+    /* Nút trên nền tối Hero */
+    .btn-hero {
+      border: 1px solid rgba(250, 247, 242, 0.55);
+      color: #FAF7F2;
+      background: rgba(250, 247, 242, 0.08);
+      backdrop-filter: blur(6px);
+    }
+    .btn-hero::before {
+      background-color: #C89D54;
+    }
+    .btn-hero:hover {
+      border-color: #C89D54;
+      color: #1C2520;
+    }
+
+    /* Nút chính xanh lá sen */
+    .btn-primary {
+      border: 1px solid #2D4F3E;
+      background-color: #2D4F3E;
+      color: #FAF7F2;
+    }
+    .btn-primary::before {
+      background-color: #C89D54;
+    }
+    .btn-primary:hover {
+      border-color: #C89D54;
+      color: #1C2520;
+    }
+
+    /* Nút viền mảnh */
+    .btn-outline {
+      border: 1px solid rgba(28, 37, 32, 0.25);
+      color: #1C2520;
+      background: transparent;
+    }
+    .btn-outline::before {
+      background-color: #2D4F3E;
+    }
+    .btn-outline:hover {
+      border-color: #2D4F3E;
+      color: #FAF7F2;
+    }
+
+    /* ==========================================================================
+       8. INFINITE MARQUEE & CÁNH SEN LƠ LỬNG (KEYFRAMES)
+       ========================================================================== */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 32s linear infinite;
+    }
+
+    .marquee-wrapper:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes floatPetal {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-18px) rotate(6deg);
+      }
+    }
+
+    @keyframes floatPetalSlow {
+      0%, 100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(15px) translateX(-10px) rotate(-5deg);
+      }
+    }
+
+    .petal-float-1 {
+      animation: floatPetal 7s ease-in-out infinite;
+    }
+
+    .petal-float-2 {
+      animation: floatPetalSlow 9s ease-in-out infinite;
+    }
+
+    /* Số thứ tự lớn mờ phía sau bố cục tạp chí */
+    .watermark-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      line-height: 0.85;
+      color: rgba(45, 79, 62, 0.065);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
+       9. HIỆU ỨNG TRẮC NGHIỆM (SHAKE KHI SAI & SLIDE THẺ BÀI)
+       ========================================================================== */
+    @keyframes cardShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-9px); }
+      40% { transform: translateX(9px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+
+    .animate-shake {
+      animation: cardShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes cardSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(28px) scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    .quiz-card-enter {
+      animation: cardSlideIn 0.5s var(--ease-editorial) forwards;
+    }
+
+    /* Cột trục thời gian văn hóa */
+    .timeline-line {
+      position: relative;
+    }
+    .timeline-line::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(45, 79, 62, 0.35) 10%, rgba(200, 157, 84, 0.5) 90%, transparent);
+    }
+    @media (min-width: 768px) {
+      .timeline-line::before {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Menu mobile overlay */
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      background-color: #1C2520;
+      color: #FAF7F2;
+      z-index: 990;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+      clip-path: circle(0% at calc(100% - 2.5rem) 2.5rem);
+      transition: clip-path 0.65s var(--ease-editorial);
+      pointer-events: none;
+    }
+    .mobile-drawer.open {
+      clip-path: circle(150% at calc(100% - 2.5rem) 2.5rem);
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body class="selection:bg-lotusPink/30 selection:text-charcoal">
+
+  <!-- Lớp phủ hạt nhiễu giấy mỹ thuật cố định toàn màn hình -->
+  <div class="paper-grain-overlay" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       SMART GLASSMORPHIC NAVBAR (ĐIỀU HƯỚNG 5 TRANG)
+       ======================================================================== -->
+  <header id="smartNavbar" class="smart-navbar on-hero-top">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
+      <!-- Thương hiệu Tạp chí -->
+      <a href="#trang-chu" data-page="trang-chu" class="nav-trigger flex items-center gap-3 group focus:outline-none">
+        <div class="w-9 h-9 rounded-full border border-current flex items-center justify-center transition-transform duration-500 group-hover:rotate-45">
+          <!-- Biểu tượng hoa sen tối giản -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M12 3C9.5 7 9.5 11.5 12 15C14.5 11.5 14.5 7 12 3Z"/>
+            <path d="M12 15C8.5 13 5.5 10.5 4.5 7.5C4 11.5 6.5 15.5 12 17.5"/>
+            <path d="M12 15C15.5 13 18.5 10.5 19.5 7.5C20 11.5 17.5 15.5 12 17.5"/>
+            <path d="M3 16.5C6.5 18.5 10 19.5 12 19.5C14 19.5 17.5 18.5 21 16.5"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-serif text-xl sm:text-2xl font-semibold tracking-wider block leading-none">ĐỒNG THÁP</span>
+          <span class="text-[10px] uppercase tracking-[0.24em] opacity-75 block mt-0.5">Hồn Sen Đất Tháp</span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop -->
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Điều hướng chính">
+        <a href="#trang-chu" data-page="trang-chu" class="nav-trigger nav-link-editorial active">Trang chủ</a>
+        <a href="#van-hoa" data-page="van-hoa" class="nav-trigger nav-link-editorial">Lịch sử & Văn hóa</a>
+        <a href="#du-lich" data-page="du-lich" class="nav-trigger nav-link-editorial">Du lịch & Điểm đến</a>
+        <a href="#am-thuc" data-page="am-thuc" class="nav-trigger nav-link-editorial">Ẩm thực đặc sản</a>
+        <a href="#trac-nghiem" data-page="trac-nghiem" class="nav-trigger nav-link-editorial flex items-center gap-1.5">
+          <span>Trắc nghiệm</span>
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-lotusPink animate-pulse"></span>
+        </a>
+      </nav>
+
+      <!-- Nút hành động nhanh & Hamburger Mobile -->
+      <div class="flex items-center gap-3">
+        <button data-page="trac-nghiem" class="nav-trigger hidden sm:inline-flex items-center gap-2 text-xs uppercase tracking-widest px-4 py-2 rounded-full border border-current/30 hover:border-lotusGold hover:bg-lotusGold hover:text-charcoal transition-all duration-300">
+          <span>Thử tài 10 câu hỏi</span>
+        </button>
+
+        <button id="mobileMenuBtn" aria-label="Mở menu" class="lg:hidden w-10 h-10 rounded-full border border-current/30 flex flex-col items-center justify-center gap-1.5 focus:outline-none">
+          <span class="w-5 h-0.5 bg-current transition-transform duration-300" id="bar1"></span>
+          <span class="w-5 h-0.5 bg-current transition-opacity duration-300" id="bar2"></span>
+          <span class="w-3.5 h-0.5 bg-current self-end mr-2.5 transition-transform duration-300" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobileDrawer" class="mobile-drawer lg:hidden">
+    <div class="max-w-md mx-auto w-full space-y-6">
+      <p class="text-xs uppercase tracking-[0.28em] text-lotusGold">Mục lục Tạp chí — Số Đặc Biệt</p>
+      <nav class="flex flex-col space-y-4">
+        <a href="#trang-chu" data-page="trang-chu" class="mobile-nav-link font-serif text-4xl hover:text-lotusPink transition-colors flex items-baseline gap-4">
+          <span class="text-sm font-sans text-lotusGold">01</span> Trang chủ
+        </a>
+        <a href="#van-hoa" data-page="van-hoa" class="mobile-nav-link font-serif text-4xl hover:text-lotusPink transition-colors flex items-baseline gap-4">
+          <span class="text-sm font-sans text-lotusGold">02</span> Lịch sử & Văn hóa
+        </a>
+        <a href="#du-lich" data-page="du-lich" class="mobile-nav-link font-serif text-4xl hover:text-lotusPink transition-colors flex items-baseline gap-4">
+          <span class="text-sm font-sans text-lotusGold">03</span> Du lịch & Điểm đến
+        </a>
+        <a href="#am-thuc" data-page="am-thuc" class="mobile-nav-link font-serif text-4xl hover:text-lotusPink transition-colors flex items-baseline gap-4">
+          <span class="text-sm font-sans text-lotusGold">04</span> Ẩm thực đặc sản
+        </a>
+        <a href="#trac-nghiem" data-page="trac-nghiem" class="mobile-nav-link font-serif text-4xl hover:text-lotusPink transition-colors flex items-baseline gap-4">
+          <span class="text-sm font-sans text-lotusGold">05</span> Trắc nghiệm Khám phá
+        </a>
+      </nav>
+      <div class="pt-8 border-t border-paper/15 text-sm text-paper/60">
+        <p>“Tháp Mười đẹp nhất bông sen / Việt Nam đẹp nhất có tên Bác Hồ”</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       NỘI DUNG CHÍNH (5 TRANG CHUYỂN ĐỔI MƯỢT MÀ)
+       ======================================================================== -->
+  <main id="appContainer">
+
+    <!-- ======================================================================
+         TRANG 1: TRANG CHỦ (INDEX)
+         ====================================================================== -->
+    <section id="page-trang-chu" class="page-view active-page visible-page">
+      
+      <!-- 1.1 Hero Banner Toàn Màn Hình với Parallax & Họa Tiết Cánh Sen -->
+      <div class="relative min-h-screen flex items-center justify-center overflow-hidden bg-charcoal text-paper">
+        <!-- Hình nền Hero (Thay ảnh đầm sen Đồng Tháp thực tế tại src này) -->
+        <div id="heroParallaxBg" class="absolute inset-0 scale-105 transition-transform duration-300 ease-out">
+          <img 
+            src="https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&w=2000&q=85" 
+            onerror="this.src='https://placehold.co/1920x1080/2D4F3E/FAF7F2?text=Dong+Thap+Sen+Hong'"
+            alt="Đầm sen hồng Đồng Tháp Mười" 
+            class="w-full h-full object-cover opacity-55"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/40 to-charcoal/90"></div>
+        </div>
+
+        <!-- Họa tiết cánh sen & sóng nước trôi lơ lửng bằng SVG + CSS Keyframes -->
+        <div class="absolute top-28 right-8 md:right-20 w-40 h-40 md:w-64 md:h-64 text-lotusPink/25 pointer-events-none petal-float-1">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.9">
+            <path d="M100 20 C65 65, 65 135, 100 180 C135 135, 135 65, 100 20 Z" />
+            <path d="M100 40 C40 80, 40 130, 100 175" />
+            <path d="M100 40 C160 80, 160 130, 100 175" />
+            <circle cx="100" cy="100" r="78" stroke-dasharray="3 6" />
+          </svg>
+        </div>
+
+        <div class="absolute bottom-24 left-6 md:left-16 w-32 h-32 md:w-48 md:h-48 text-lotusGold/25 pointer-events-none petal-float-2">
+          <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M20 80 Q50 55, 80 80 T140 80" />
+            <path d="M10 100 Q45 75, 80 100 T150 100" />
+            <path d="M30 120 Q55 100, 80 120 T130 120" />
+          </svg>
+        </div>
+
+        <!-- Nội dung trung tâm Hero -->
+        <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 pt-24 pb-16 text-center">
+          <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-paper/25 bg-paper/5 backdrop-blur-sm mb-8 reveal-item">
+            <span class="w-2 h-2 rounded-full bg-lotusPink"></span>
+            <span class="text-xs uppercase tracking-[0.26em] text-paper/90">Ấn phẩm Văn hóa & Du lịch Đồng Bằng Sông Cửu Long</span>
+          </div>
+
+          <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[6.2rem] font-normal leading-[1.04] tracking-tight mb-7 reveal-item" style="transition-delay: 120ms;">
+            Thuần Khiết Như <br/>
+            <span class="italic text-lotusPink font-normal">Hồn Sen</span> Đất Tháp
+          </h1>
+
+          <p class="max-w-2xl mx-auto text-base sm:text-lg text-paper/80 font-light leading-relaxed mb-10 reveal-item" style="transition-delay: 220ms;">
+            Hành trình ngược dòng phù sa Tiền Giang – Hậu Giang, chạm vào nhịp thở trầm mặc của rừng tràm nguyên sinh, sắc hoa Sa Đéc trăm năm và chiều sâu văn hóa khẩn hoang phương Nam.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal-item" style="transition-delay: 320ms;">
+            <button data-page="du-lich" class="nav-trigger btn-editorial btn-hero">
+              <span>Khám phá miền di sản</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <button data-page="van-hoa" class="nav-trigger btn-editorial text-paper/85 hover:text-lotusGold">
+              <span>Đọc biên niên sử khẩn hoang</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chỉ dẫn cuộn xuống -->
+        <div class="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-paper/60 text-[11px] uppercase tracking-[0.25em]">
+          <span>Cuộn xuống</span>
+          <div class="w-px h-9 bg-gradient-to-b from-paper/60 to-transparent"></div>
+        </div>
+      </div>
+
+      <!-- 1.2 Dải Chữ Chạy Ngang (Infinite Marquee) -->
+      <div class="marquee-wrapper bg-lotusGreen text-paper py-4 border-y border-lotusGold/30 overflow-hidden">
+        <div class="marquee-track flex items-center gap-10 text-sm sm:text-base tracking-[0.2em] uppercase font-light">
+          <span>Sen Hồng Tháp Mười</span>
+          <span class="text-lotusGold">✦</span>
+          <span class="font-serif italic text-xl normal-case text-lotusPink">Vườn Quốc Gia Tràm Chim</span>
+          <span class="text-lotusGold">✦</span>
+          <span>Làng Hoa Sa Đéc</span>
+          <span class="text-lotusGold">✦</span>
+          <span class="font-serif italic text-xl normal-case text-lotusPink">Quýt Hồng Lai Vung</span>
+          <span class="text-lotusGold">✦</span>
+          <span>Căn Cứ Xẻo Quýt</span>
+          <span class="text-lotusGold">✦</span>
+          <span class="font-serif italic text-xl normal-case text-lotusPink">Sinh Thái Gáo Giồng</span>
+          <span class="text-lotusGold">✦</span>
+          <span>Thủ Phủ Cao Lãnh</span>
+          <span class="text-lotusGold">✦</span>
+          <!-- Lặp lại liền mạch -->
+          <span>Sen Hồng Tháp Mười</span>
+          <span class="text-lotusGold">✦</span>
+          <span class="font-serif italic text-xl normal-case text-lotusPink">Vườn Quốc Gia Tràm Chim</span>
+          <span class="text-lotusGold">✦</span>
+          <span>Làng Hoa Sa Đéc</span>
+          <span class="text-lotusGold">✦</span>
+          <span class="font-serif italic text-xl normal-case text-lotusPink">Quýt Hồng Lai Vung</span>
+          <span class="text-lotusGold">✦</span>
+          <span>Căn Cứ Xẻo Quýt</span>
+          <span class="text-lotusGold">✦</span>
+          <span class="font-serif italic text-xl normal-case text-lotusPink">Sinh Thái Gáo Giồng</span>
+          <span class="text-lotusGold">✦</span>
+          <span>Thủ Phủ Cao Lãnh</span>
+          <span class="text-lotusGold">✦</span>
+        </div>
+      </div>
+
+      <!-- 1.3 Giới Thiệu Tổng Quan Bố Cục Bất Đối Xứng 60/40 & Số Thứ Tự Mờ -->
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-24 md:py-32 relative">
+        <!-- Số thứ tự lớn mờ phía sau -->
+        <div class="watermark-number text-[10rem] sm:text-[15rem] absolute top-10 right-4 lg:right-12">01</div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <!-- Cột trái 60% (7 cột): Khung hình vòm + ảnh phụ lồng ghép -->
+          <div class="lg:col-span-7 relative reveal-item">
+            <div class="editorial-arch img-zoom-wrapper aspect-[4/4.6] max-w-xl shadow-2xl shadow-charcoal/10">
+              <!-- Thay ảnh thực tế: Sông nước hoặc đầm sen lúc bình minh -->
+              <img 
+                src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=85" 
+                onerror="this.src='https://placehold.co/800x920/2D4F3E/FAF7F2?text=Song+Nuoc+Dong+Thap'"
+                alt="Bình minh trên vùng đất sen hồng Đồng Tháp"
+              />
+            </div>
+
+            <!-- Thẻ trích dẫn nổi lồng ghép góc dưới phải -->
+            <div class="hidden sm:block bg-paper border border-lotusGreen/15 rounded-2xl p-6 max-w-xs shadow-xl absolute -bottom-8 right-2 md:right-8 backdrop-blur-md">
+              <p class="font-serif italic text-xl text-lotusGreen leading-snug mb-2">
+                “Nơi những cánh đồng tràm reo gió và hoa sen nở rộ giữa mùa nước nổi.”
+              </p>
+              <span class="text-xs uppercase tracking-widest text-lotusGold font-semibold">Tọa độ: 10°28′B 105°38′Đ</span>
+            </div>
+          </div>
+
+          <!-- Cột phải 40% (5 cột): Lời ngỏ biên tập -->
+          <div class="lg:col-span-5 space-y-6 reveal-item" style="transition-delay: 160ms;">
+            <div class="flex items-center gap-3 text-lotusGreen">
+              <span class="w-8 h-px bg-lotusGreen"></span>
+              <span class="text-xs uppercase tracking-[0.24em] font-semibold">Lời Ngỏ Biên Tập</span>
+            </div>
+
+            <h2 class="font-serif text-4xl sm:text-5xl font-medium leading-[1.12] text-charcoal">
+              Vùng đất của những dòng phù sa hiền hòa và khí phách hào sảng
+            </h2>
+
+            <p class="text-charcoal/80 text-base leading-relaxed">
+              Nằm ở cửa ngõ sông Tiền, Đồng Tháp không ồn ào phô trương mà chinh phục lữ khách bằng vẻ đẹp mộc mạc, thanh khiết như chính loài sen đã trở thành biểu tượng của quê hương.
+            </p>
+
+            <p class="text-charcoal/80 text-base leading-relaxed">
+              Từ vùng trũng Đồng Tháp Mười bát ngát rừng tràm, sếu đầu đỏ bay về trú ngụ, đến thủ phủ hoa kiểng Sa Đéc bên dòng Sa Giang cổ kính — mỗi tấc đất nơi đây đều lưu giữ câu chuyện mở cõi đầy tự hào của cha ông.
+            </p>
+
+            <!-- Chỉ số văn hóa tinh tế -->
+            <div class="grid grid-cols-3 gap-4 pt-4 border-t border-charcoal/10">
+              <div>
+                <span class="font-serif text-3xl sm:text-4xl font-semibold text-lotusGreen block">300+</span>
+                <span class="text-xs text-charcoal/65">Năm lịch sử khẩn hoang</span>
+              </div>
+              <div>
+                <span class="font-serif text-3xl sm:text-4xl font-semibold text-lotusGold block">2.000</span>
+                <span class="text-xs text-charcoal/65">Loài hoa kiểng Sa Đéc</span>
+              </div>
+              <div>
+                <span class="font-serif text-3xl sm:text-4xl font-semibold text-lotusPink block">06</span>
+                <span class="text-xs text-charcoal/65">Di sản & điểm đến tiêu biểu</span>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <button data-page="van-hoa" class="nav-trigger btn-editorial btn-primary">
+                <span>Tiếp tục hành trình</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.4 Mục Lục 4 Chuyên Đề Nổi Bật (Bố cục so le) -->
+      <div class="bg-paperDark/70 py-24 border-t border-charcoal/10">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal-item">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] text-lotusGold font-semibold block mb-2">Các Chuyên Mục Tạp Chí</span>
+              <h2 class="font-serif text-4xl sm:text-5xl text-charcoal">Bốn Góc Nhìn Về Đất Sen Hồng</h2>
+            </div>
+            <p class="max-w-md text-sm text-charcoal/70">
+              Chọn một chuyên mục bên dưới để lật mở từng trang văn hóa, thiên nhiên, ẩm thực và thử thách trí tuệ về vùng đất Đồng Tháp.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Chuyên mục 1 -->
+            <div data-page="van-hoa" class="nav-trigger group cursor-pointer bg-paper rounded-2xl p-6 border border-charcoal/10 hover:border-lotusGreen/40 transition-all duration-500 hover:-translate-y-2 reveal-item">
+              <div class="flex justify-between items-center mb-6">
+                <span class="font-serif italic text-3xl text-lotusGold">I.</span>
+                <span class="text-xs uppercase tracking-widest text-charcoal/50 group-hover:text-lotusGreen transition-colors">Khám phá →</span>
+              </div>
+              <h3 class="font-serif text-2xl font-semibold mb-3 group-hover:text-lotusGreen transition-colors">Lịch Sử & Văn Hóa</h3>
+              <p class="text-sm text-charcoal/75 leading-relaxed">
+                Dòng thời gian khẩn hoang Đồng Tháp Mười, điệu hò Đồng Tháp ngọt ngào và những làng nghề trăm tuổi.
+              </p>
+            </div>
+
+            <!-- Chuyên mục 2 (Đẩy xuống nhẹ trên desktop tạo nhịp so le) -->
+            <div data-page="du-lich" class="nav-trigger group cursor-pointer bg-paper rounded-2xl p-6 border border-charcoal/10 hover:border-lotusGreen/40 transition-all duration-500 hover:-translate-y-2 lg:translate-y-8 reveal-item" style="transition-delay: 100ms;">
+              <div class="flex justify-between items-center mb-6">
+                <span class="font-serif italic text-3xl text-lotusPink">II.</span>
+                <span class="text-xs uppercase tracking-widest text-charcoal/50 group-hover:text-lotusGreen transition-colors">Khám phá →</span>
+              </div>
+              <h3 class="font-serif text-2xl font-semibold mb-3 group-hover:text-lotusGreen transition-colors">Du Lịch & Điểm Đến</h3>
+              <p class="text-sm text-charcoal/75 leading-relaxed">
+                Từ vườn quốc gia Tràm Chim, căn cứ Xẻo Quýt đến nhà cổ Huỳnh Thủy Lê mang kiến trúc Đông – Tây.
+              </p>
+            </div>
+
+            <!-- Chuyên mục 3 -->
+            <div data-page="am-thuc" class="nav-trigger group cursor-pointer bg-paper rounded-2xl p-6 border border-charcoal/10 hover:border-lotusGreen/40 transition-all duration-500 hover:-translate-y-2 reveal-item" style="transition-delay: 200ms;">
+              <div class="flex justify-between items-center mb-6">
+                <span class="font-serif italic text-3xl text-lotusGreen">III.</span>
+                <span class="text-xs uppercase tracking-widest text-charcoal/50 group-hover:text-lotusGreen transition-colors">Khám phá →</span>
+              </div>
+              <h3 class="font-serif text-2xl font-semibold mb-3 group-hover:text-lotusGreen transition-colors">Ẩm Thực Đặc Sản</h3>
+              <p class="text-sm text-charcoal/75 leading-relaxed">
+                Thực đơn tinh hoa mùa nước nổi: Lẩu cá linh bông điên điển, hủ tiếu Sa Đéc, nem Lai Vung trứ danh.
+              </p>
+            </div>
+
+            <!-- Chuyên mục 4 -->
+            <div data-page="trac-nghiem" class="nav-trigger group cursor-pointer bg-lotusGreen text-paper rounded-2xl p-6 border border-lotusGreen transition-all duration-500 hover:-translate-y-2 lg:translate-y-8 reveal-item" style="transition-delay: 300ms;">
+              <div class="flex justify-between items-center mb-6">
+                <span class="font-serif italic text-3xl text-lotusGold">IV.</span>
+                <span class="text-xs uppercase tracking-widest text-lotusPink">Thử thách →</span>
+              </div>
+              <h3 class="font-serif text-2xl font-semibold mb-3">Trắc Nghiệm Địa Phương</h3>
+              <p class="text-sm text-paper/80 leading-relaxed">
+                Thử tài hiểu biết của bạn qua 10 câu hỏi chọn lọc ngẫu nhiên về lịch sử, văn hóa và con người Đồng Tháp.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TRANG 2: LỊCH SỬ & VĂN HÓA (VAN-HOA)
+         ====================================================================== -->
+    <section id="page-van-hoa" class="page-view pt-28 sm:pt-36 pb-24">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative">
+        <div class="watermark-number text-[9rem] sm:text-[14rem] absolute -top-6 right-6">02</div>
+
+        <!-- Header Trang Văn Hóa -->
+        <div class="max-w-3xl mb-20 reveal-item">
+          <span class="text-xs uppercase tracking-[0.26em] text-lotusGreen font-semibold block mb-3">Chương II • Ký Ức & Bản Sắc</span>
+          <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] mb-6">
+            Biên Niên Sử <span class="italic text-lotusGreen">Khẩn Hoang</span> & Hồn Cốt Dân Gian
+          </h1>
+          <p class="text-base sm:text-lg text-charcoal/75 leading-relaxed">
+            Từ những bước chân lưu dân đầu tiên mở cõi vùng bưng biền Đồng Tháp Mười thế kỷ XVII đến những câu hò cất lên trên dòng sông Tiền lộng gió.
+          </p>
+        </div>
+
+        <!-- 2.1 Dòng Thời Gian Tương Tác Dọc (Interactive Timeline) -->
+        <div class="mb-28">
+          <div class="text-center mb-14 reveal-item">
+            <h2 class="font-serif text-3xl sm:text-4xl">Dòng Chảy Lịch Sử Đồng Tháp Mười</h2>
+            <p class="text-sm text-charcoal/65 mt-2">Hành trình biến vùng đầm lầy hoang vu thành vựa lúa và thủ phủ sen hồng</p>
+          </div>
+
+          <div class="timeline-line space-y-16 md:space-y-24 relative py-4">
+            
+            <!-- Mốc 1: Thế kỷ XVII - XVIII -->
+            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center reveal-item">
+              <!-- Điểm đánh dấu trên trục -->
+              <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-paper border-2 border-lotusGreen items-center justify-center z-10 shadow-md">
+                <span class="w-3 h-3 rounded-full bg-lotusGold"></span>
+              </div>
+
+              <div class="pl-12 md:pl-0 md:text-right md:pr-8">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-lotusGreen/10 text-lotusGreen text-xs font-semibold tracking-wider mb-3">
+                  THẾ KỶ XVII — XVIII
+                </span>
+                <h3 class="font-serif text-3xl font-semibold mb-3">Buổi Đầu Lưu Dân Mở Cõi</h3>
+                <p class="text-charcoal/75 text-sm sm:text-base leading-relaxed">
+                  Những đoàn lưu dân Việt từ miền Trung theo đường thủy xuôi về phương Nam, dựng chòi khai phá ven sông Tiền, sông Hậu và vùng Sa Đéc, Cao Lãnh. Dưới thời chúa Nguyễn, dinh Tân Châu Đạo được thiết lập (1757), đặt nền móng hành chính vững chắc cho vùng đất trù phú này.
+                </p>
+              </div>
+
+              <div class="pl-12 md:pl-8">
+                <div class="editorial-frame img-zoom-wrapper aspect-[16/10] shadow-lg">
+                  <!-- Thay ảnh thực tế: Cảnh sông nước kênh rạch cổ xưa Đồng Tháp -->
+                  <img 
+                    src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1000&q=80" 
+                    onerror="this.src='https://placehold.co/800x500/2D4F3E/FAF7F2?text=Khai+Hoang+Phuong+Nam'"
+                    alt="Cảnh quan kênh rạch vùng đất mở cõi phương Nam"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Mốc 2: Thời kỳ Kháng chiến -->
+            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center reveal-item">
+              <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-paper border-2 border-lotusPink items-center justify-center z-10 shadow-md">
+                <span class="w-3 h-3 rounded-full bg-lotusPink"></span>
+              </div>
+
+              <div class="pl-12 md:pl-0 md:pr-8 order-2 md:order-1">
+                <div class="editorial-frame img-zoom-wrapper aspect-[16/10] shadow-lg">
+                  <!-- Thay ảnh thực tế: Rừng tràm Xẻo Quýt / Đồng Tháp Mười -->
+                  <img 
+                    src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=80" 
+                    onerror="this.src='https://placehold.co/800x500/2D4F3E/FAF7F2?text=Rung+Tram+Khang+Chien'"
+                    alt="Rừng tràm nguyên sinh Xẻo Quýt"
+                  />
+                </div>
+              </div>
+
+              <div class="pl-12 md:pl-8 order-1 md:order-2">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-lotusPink/20 text-charcoal text-xs font-semibold tracking-wider mb-3">
+                  1860 — 1975
+                </span>
+                <h3 class="font-serif text-3xl font-semibold mb-3">Chiến Khu Rừng Tràm Bất Khuất</h3>
+                <p class="text-charcoal/75 text-sm sm:text-base leading-relaxed">
+                  Từ cuộc khởi nghĩa của Thiên Hộ Võ Duy Dương và Đốc Binh Nguyễn Tấn Kiều tại Gò Tháp thế kỷ XIX, đến hai cuộc kháng chiến trường kỳ ở căn cứ Xẻo Quýt — rừng tràm Đồng Tháp Mười trở thành thành đồng che chở quân dân miền Tây.
+                </p>
+              </div>
+            </div>
+
+            <!-- Mốc 3: Công cuộc Khai hoang Đồng Tháp Mười sau 1975 -->
+            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center reveal-item">
+              <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-paper border-2 border-lotusGold items-center justify-center z-10 shadow-md">
+                <span class="w-3 h-3 rounded-full bg-lotusGreen"></span>
+              </div>
+
+              <div class="pl-12 md:pl-0 md:text-right md:pr-8">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-lotusGold/20 text-charcoal text-xs font-semibold tracking-wider mb-3">
+                  SAU NĂM 1975 — NAY
+                </span>
+                <h3 class="font-serif text-3xl font-semibold mb-3">Kỳ Tích Đánh Thức Đồng Tháp Mười</h3>
+                <p class="text-charcoal/75 text-sm sm:text-base leading-relaxed">
+                  Bằng tầm nhìn đào kênh xả phèn, dẫn ngọt từ sông Tiền vào nội đồng, hàng trăm nghìn hecta đất hoang hóa nhiễm phèn nặng đã hồi sinh kỳ diệu, đưa Đồng Tháp trở thành trọng điểm lương thực, hoa kiểng và du lịch sinh thái bền vững.
+                </p>
+              </div>
+
+              <div class="pl-12 md:pl-8">
+                <div class="editorial-frame img-zoom-wrapper aspect-[16/10] shadow-lg">
+                  <!-- Thay ảnh thực tế: Cánh đồng lúa và hoa sen Đồng Tháp hiện đại -->
+                  <img 
+                    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80" 
+                    onerror="this.src='https://placehold.co/800x500/2D4F3E/FAF7F2?text=Dong+Thap+Hoi+Sinh'"
+                    alt="Cánh đồng trù phú vùng Đồng Tháp Mười ngày nay"
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2.2 Di Sản Phi Vật Thể: Đờn Ca Tài Tử & Hò Đồng Tháp -->
+        <div class="bg-lotusGreen text-paper rounded-3xl p-8 sm:p-12 lg:p-16 mb-24 relative overflow-hidden reveal-item">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-7 space-y-5">
+              <span class="text-xs uppercase tracking-[0.25em] text-lotusGold font-semibold">Thanh Âm Miền Sông Nước</span>
+              <h2 class="font-serif text-4xl sm:text-5xl font-normal leading-tight">
+                Hò Đồng Tháp & Nghệ Thuật Đờn Ca Tài Tử
+              </h2>
+              <p class="text-paper/85 leading-relaxed">
+                Giữa đêm trăng thanh trên dòng sông Tiền hay những mùa cấy hái rộn ràng, câu <strong>Hò Đồng Tháp</strong> vang lên ngân nga, mộc mạc mà sâu lắng nghĩa tình. Cùng với nghệ thuật <strong>Đờn ca tài tử Nam Bộ</strong> (Di sản văn hóa phi vật thể đại diện của nhân loại), tiếng đờn kìm, đờn tranh hòa quyện tạo nên đời sống tinh thần phóng khoáng của người dân Đất Sen Hồng.
+              </p>
+              <blockquote class="border-l-2 border-lotusPink pl-5 py-1 italic font-serif text-xl sm:text-2xl text-lotusPink">
+                “Hò ơ... Gió đưa trăng thì trăng đưa gió,<br/>
+                Trăng lặn rồi gió biết đưa ai...”
+              </blockquote>
+            </div>
+
+            <div class="lg:col-span-5">
+              <div class="bg-paper/10 backdrop-blur-md border border-paper/15 rounded-2xl p-6 space-y-4">
+                <h3 class="font-serif text-2xl text-lotusGold">Nét Đặc Trưng Văn Hóa</h3>
+                <ul class="space-y-3 text-sm text-paper/90">
+                  <li class="flex items-start gap-3">
+                    <span class="text-lotusPink mt-1">✦</span>
+                    <span><strong>Hò Đồng Tháp:</strong> Lối hò đối đáp giao duyên và hò lao động với làn điệu khoan thai, giàu chất trữ tình sông nước.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-lotusPink mt-1">✦</span>
+                    <span><strong>Đờn ca tài tử:</strong> Sinh hoạt văn nghệ gắn kết cộng đồng tại các nhà cổ Sa Đéc và miệt vườn Cao Lãnh.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-lotusPink mt-1">✦</span>
+                    <span><strong>Lễ hội Gò Tháp:</strong> Diễn ra vào rằm tháng Ba và rằm tháng Mười Một âm lịch tưởng nhớ hai vị anh hùng dân tộc.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.3 Các Làng Nghề Truyền Thống Trăm Năm -->
+        <div>
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal-item">
+            <div>
+              <span class="text-xs uppercase tracking-[0.25em] text-lotusGold font-semibold block mb-2">Tinh Hoa Thủ Công</span>
+              <h2 class="font-serif text-4xl sm:text-5xl">Làng Nghề Truyền Thống Đất Tháp</h2>
+            </div>
+            <p class="text-sm text-charcoal/70 max-w-md">Những bàn tay tài hoa giữ lửa di sản qua bao thế hệ bên đôi bờ sông Tiền, sông Hậu.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Làng nghề 1: Chiếu Định Yên -->
+            <article class="group bg-paperDark/60 rounded-2xl overflow-hidden border border-charcoal/10 reveal-item">
+              <div class="img-zoom-wrapper aspect-[4/3]">
+                <!-- Thay ảnh thực tế: Làng chiếu Định Yên Lấp Vò -->
+                <img 
+                  src="https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=800&q=80" 
+                  onerror="this.src='https://placehold.co/800x600/C89D54/1C2520?text=Lang+Chieu+Dinh+Yen'"
+                  alt="Làng nghề dệt chiếu Định Yên"
+                />
+              </div>
+              <div class="p-6">
+                <span class="text-xs uppercase tracking-widest text-lotusGreen font-semibold">Huyện Lấp Vò</span>
+                <h3 class="font-serif text-2xl font-semibold mt-1 mb-2">Làng Chiếu Định Yên</h3>
+                <p class="text-sm text-charcoal/75 leading-relaxed">
+                  Nổi tiếng hơn một thế kỷ với những chiếc chiếu bông rực rỡ sắc màu và nét văn hóa “chợ ma” họp lúc nửa đêm bên bến sông Hậu độc đáo bậc nhất miền Tây.
+                </p>
+              </div>
+            </article>
+
+            <!-- Làng nghề 2: Dệt choàng Long Khánh -->
+            <article class="group bg-paperDark/60 rounded-2xl overflow-hidden border border-charcoal/10 md:translate-y-6 reveal-item" style="transition-delay: 120ms;">
+              <div class="img-zoom-wrapper aspect-[4/3]">
+                <!-- Thay ảnh thực tế: Làng dệt khăn choàng Long Khánh Hồng Ngự -->
+                <img 
+                  src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=800&q=80" 
+                  onerror="this.src='https://placehold.co/800x600/D98A9C/1C2520?text=Det+Choang+Long+Khanh'"
+                  alt="Làng dệt choàng Long Khánh"
+                />
+              </div>
+              <div class="p-6">
+                <span class="text-xs uppercase tracking-widest text-lotusGreen font-semibold">Huyện Hồng Ngự</span>
+                <h3 class="font-serif text-2xl font-semibold mt-1 mb-2">Dệt Choàng Long Khánh</h3>
+                <p class="text-sm text-charcoal/75 leading-relaxed">
+                  Hơn 100 năm giữ nhịp thoi đưa, tạo nên những chiếc khăn rằn Nam Bộ mềm mại, thấm hút mồ hôi, trở thành biểu tượng thân thương của người dân vùng biên viễn.
+                </p>
+              </div>
+            </article>
+
+            <!-- Làng nghề 3: Đóng xuồng ghe Bà Đài -->
+            <article class="group bg-paperDark/60 rounded-2xl overflow-hidden border border-charcoal/10 reveal-item" style="transition-delay: 240ms;">
+              <div class="img-zoom-wrapper aspect-[4/3]">
+                <!-- Thay ảnh thực tế: Làng đóng xuồng ghe Bà Đài Lai Vung -->
+                <img 
+                  src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" 
+                  onerror="this.src='https://placehold.co/800x600/2D4F3E/FAF7F2?text=Xuong+Ghe+Ba+Dai'"
+                  alt="Làng đóng xuồng ghe Bà Đài"
+                />
+              </div>
+              <div class="p-6">
+                <span class="text-xs uppercase tracking-widest text-lotusGreen font-semibold">Huyện Lai Vung</span>
+                <h3 class="font-serif text-2xl font-semibold mt-1 mb-2">Đóng Xuồng Ghe Bà Đài</h3>
+                <p class="text-sm text-charcoal/75 leading-relaxed">
+                  Được công nhận Di sản văn hóa phi vật thể quốc gia, nơi những nghệ nhân chế tác xuồng tam bản, ghe bầu không cần bản vẽ nhưng chuẩn xác đến từng đường cong lướt sóng.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TRANG 3: DU LỊCH & ĐIỂM ĐẾN (DU-LICH)
+         ====================================================================== -->
+    <section id="page-du-lich" class="page-view pt-28 sm:pt-36 pb-24">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative">
+        <div class="watermark-number text-[9rem] sm:text-[14rem] absolute -top-6 right-6">03</div>
+
+        <!-- Header & Bộ Lọc Danh Mục -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 reveal-item">
+          <div class="max-w-2xl">
+            <span class="text-xs uppercase tracking-[0.26em] text-lotusGreen font-semibold block mb-3">Chương III • Bản Đồ Di Sản</span>
+            <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.08]">
+              Những Tọa Độ <span class="italic text-lotusPink">Đánh Thức</span> Mọi Giác Quan
+            </h1>
+          </div>
+
+          <!-- Bộ lọc nhanh JS mượt mà -->
+          <div class="flex flex-wrap gap-2.5" id="destFilterGroup" role="tablist" aria-label="Lọc điểm đến">
+            <button data-filter="all" class="filter-btn active px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-medium border border-lotusGreen bg-lotusGreen text-paper transition-all duration-300">
+              Tất cả (06)
+            </button>
+            <button data-filter="sinh-thai" class="filter-btn px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-medium border border-charcoal/20 text-charcoal hover:border-lotusGreen transition-all duration-300">
+              Sinh thái
+            </button>
+            <button data-filter="di-tich" class="filter-btn px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-medium border border-charcoal/20 text-charcoal hover:border-lotusGreen transition-all duration-300">
+              Di tích
+            </button>
+            <button data-filter="lang-nghe" class="filter-btn px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-medium border border-charcoal/20 text-charcoal hover:border-lotusGreen transition-all duration-300">
+              Làng nghề & Kiến trúc
+            </button>
+          </div>
+        </div>
+
+        <!-- Bố cục tạp chí so le (Staggered Editorial Grid) cho 6 điểm đến -->
+        <div id="destinationsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+          
+          <!-- Điểm đến 1: Làng hoa Sa Đéc -->
+          <article data-category="lang-nghe" class="dest-card group transition-all duration-500 reveal-item">
+            <div class="editorial-arch img-zoom-wrapper aspect-[4/3.2] mb-6 shadow-xl">
+              <!-- Thay ảnh thực tế: Làng hoa Sa Đéc trên giàn -->
+              <img 
+                src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1000&q=85" 
+                onerror="this.src='https://placehold.co/900x720/D98A9C/1C2520?text=Lang+Hoa+Sa+Dec'"
+                alt="Làng hoa kiểng Sa Đéc"
+              />
+            </div>
+            <div class="flex items-center justify-between text-xs uppercase tracking-widest text-lotusGold font-semibold mb-2">
+              <span>Làng nghề & Kiến trúc • TP. Sa Đéc</span>
+              <span>01 / 06</span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium mb-3 group-hover:text-lotusGreen transition-colors">
+              Làng Hoa Kiểng Sa Đéc
+            </h2>
+            <p class="text-charcoal/75 text-sm sm:text-base leading-relaxed">
+              Thủ phủ hoa lớn nhất miền Tây với lịch sử hơn 100 năm. Điểm độc đáo có một không hai là hoa được trồng trên các giàn cao phía trên mặt nước rạch, người nông dân chèo xuồng len lỏi chăm sóc giữa muôn sắc cúc mâm xôi, hồng nhung rực rỡ.
+            </p>
+          </article>
+
+          <!-- Điểm đến 2: Vườn Quốc Gia Tràm Chim (Đẩy xuống so le) -->
+          <article data-category="sinh-thai" class="dest-card group md:mt-16 transition-all duration-500 reveal-item" style="transition-delay: 120ms;">
+            <div class="editorial-frame img-zoom-wrapper aspect-[4/3.2] mb-6 shadow-xl">
+              <!-- Thay ảnh thực tế: VQG Tràm Chim & Sếu đầu đỏ -->
+              <img 
+                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=85" 
+                onerror="this.src='https://placehold.co/900x720/2D4F3E/FAF7F2?text=VQG+Tram+Chim'"
+                alt="Vườn quốc gia Tràm Chim"
+              />
+            </div>
+            <div class="flex items-center justify-between text-xs uppercase tracking-widest text-lotusGreen font-semibold mb-2">
+              <span>Sinh thái • Huyện Tam Nông</span>
+              <span>02 / 06</span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium mb-3 group-hover:text-lotusGreen transition-colors">
+              Vườn Quốc Gia Tràm Chim
+            </h2>
+            <p class="text-charcoal/75 text-sm sm:text-base leading-relaxed">
+              Khu Ramsar thứ 2.000 của thế giới và thứ 4 tại Việt Nam, lưu giữ hình ảnh thu nhỏ của vùng Đồng Tháp Mười nguyên sơ với hơn 230 loài chim nước, đặc biệt là loài Sếu đầu đỏ quý hiếm nằm trong Sách Đỏ thế giới.
+            </p>
+          </article>
+
+          <!-- Điểm đến 3: Khu di tích Xẻo Quýt -->
+          <article data-category="di-tich" class="dest-card group transition-all duration-500 reveal-item">
+            <div class="editorial-frame img-zoom-wrapper aspect-[4/3.2] mb-6 shadow-xl">
+              <!-- Thay ảnh thực tế: Rừng tràm Xẻo Quýt -->
+              <img 
+                src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1000&q=85" 
+                onerror="this.src='https://placehold.co/900x720/2D4F3E/FAF7F2?text=Khu+Di+Tich+Xeo+Quyt'"
+                alt="Khu di tích lịch sử Xẻo Quýt"
+              />
+            </div>
+            <div class="flex items-center justify-between text-xs uppercase tracking-widest text-lotusPink font-semibold mb-2">
+              <span>Di tích • Huyện Cao Lãnh</span>
+              <span>03 / 06</span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium mb-3 group-hover:text-lotusGreen transition-colors">
+              Khu Di Tích Căn Cứ Xẻo Quýt
+            </h2>
+            <p class="text-charcoal/75 text-sm sm:text-base leading-relaxed">
+              Ngồi xuồng ba lá len lỏi dưới tán rừng tràm cổ thụ dây leo chằng chịt, du khách như ngược dòng thời gian chạm vào không gian căn cứ địa cách mạng kiên cường giai đoạn 1960–1975 với những hầm chữ A, công sự bí mật còn nguyên vẹn.
+            </p>
+          </article>
+
+          <!-- Điểm đến 4: Khu du lịch sinh thái Gáo Giồng (So le) -->
+          <article data-category="sinh-thai" class="dest-card group md:mt-16 transition-all duration-500 reveal-item" style="transition-delay: 120ms;">
+            <div class="editorial-arch img-zoom-wrapper aspect-[4/3.2] mb-6 shadow-xl">
+              <!-- Thay ảnh thực tế: Khu du lịch sinh thái Gáo Giồng -->
+              <img 
+                src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1000&q=85" 
+                onerror="this.src='https://placehold.co/900x720/2D4F3E/FAF7F2?text=Sinh+Thai+Gao+Giong'"
+                alt="Khu du lịch sinh thái Gáo Giồng"
+              />
+            </div>
+            <div class="flex items-center justify-between text-xs uppercase tracking-widest text-lotusGreen font-semibold mb-2">
+              <span>Sinh thái • Huyện Cao Lãnh</span>
+              <span>04 / 06</span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium mb-3 group-hover:text-lotusGreen transition-colors">
+              Ốc Đảo Xanh Gáo Giồng
+            </h2>
+            <p class="text-charcoal/75 text-sm sm:text-base leading-relaxed">
+              Được mệnh danh là “lá phổi xanh” của Đồng Tháp Mười với sân chim tự nhiên rộng hàng chục hecta. Từ đài quan sát cao 18m, toàn cảnh rừng tràm bạt ngàn và hàng vạn cánh cò trắng bay rợp trời hiện ra đầy choáng ngợp.
+            </p>
+          </article>
+
+          <!-- Điểm đến 5: Nhà cổ Huỳnh Thủy Lê -->
+          <article data-category="lang-nghe" class="dest-card group transition-all duration-500 reveal-item">
+            <div class="editorial-frame img-zoom-wrapper aspect-[4/3.2] mb-6 shadow-xl">
+              <!-- Thay ảnh thực tế: Nhà cổ Huỳnh Thủy Lê Sa Đéc -->
+              <img 
+                src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85" 
+                onerror="this.src='https://placehold.co/900x720/C89D54/1C2520?text=Nha+Co+Huynh+Thuy+Le'"
+                alt="Nhà cổ Huỳnh Thủy Lê"
+              />
+            </div>
+            <div class="flex items-center justify-between text-xs uppercase tracking-widest text-lotusGold font-semibold mb-2">
+              <span>Làng nghề & Kiến trúc • TP. Sa Đéc</span>
+              <span>05 / 06</span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium mb-3 group-hover:text-lotusGreen transition-colors">
+              Nhà Cổ Huỳnh Thủy Lê
+            </h2>
+            <p class="text-charcoal/75 text-sm sm:text-base leading-relaxed">
+              Ngôi nhà cổ xây dựng năm 1895 bên bờ rạch Sa Đéc, kết hợp hài hòa kiến trúc phương Tây bên ngoài và nội thất chạm khắc gỗ sơn son thếp vàng truyền thống Á Đông — nơi lưu giữ mối tình huyền thoại trong tiểu thuyết <em>Người Tình (L'Amant)</em>.
+            </p>
+          </article>
+
+          <!-- Điểm đến 6: Khu di tích Cụ Phó bảng Nguyễn Sinh Sắc (So le) -->
+          <article data-category="di-tich" class="dest-card group md:mt-16 transition-all duration-500 reveal-item" style="transition-delay: 120ms;">
+            <div class="editorial-arch img-zoom-wrapper aspect-[4/3.2] mb-6 shadow-xl">
+              <!-- Thay ảnh thực tế: Khu di tích Nguyễn Sinh Sắc TP Cao Lãnh -->
+              <img 
+                src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1000&q=85" 
+                onerror="this.src='https://placehold.co/900x720/2D4F3E/FAF7F2?text=Khu+Di+Tich+Nguyen+Sinh+Sac'"
+                alt="Khu di tích Cụ Phó bảng Nguyễn Sinh Sắc"
+              />
+            </div>
+            <div class="flex items-center justify-between text-xs uppercase tracking-widest text-lotusPink font-semibold mb-2">
+              <span>Di tích • TP. Cao Lãnh</span>
+              <span>06 / 06</span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium mb-3 group-hover:text-lotusGreen transition-colors">
+              Khu Di Tích Nguyễn Sinh Sắc
+            </h2>
+            <p class="text-charcoal/75 text-sm sm:text-base leading-relaxed">
+              Công trình văn hóa tâm linh trang nghiêm tưởng nhớ thân sinh Chủ tịch Hồ Chí Minh. Vòm mộ được thiết kế hình cánh sen cách điệu úp ngược đầy tính biểu tượng, bao quanh bởi hồ sen ngát hương và không gian làng Hòa An xưa.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TRANG 4: ẨM THỰC ĐẶC SẢN (AM-THUC)
+         ====================================================================== -->
+    <section id="page-am-thuc" class="page-view pt-28 sm:pt-36 pb-24">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative">
+        <div class="watermark-number text-[9rem] sm:text-[14rem] absolute -top-6 right-6">04</div>
+
+        <!-- Header Trang Ẩm Thực -->
+        <div class="max-w-3xl mb-16 reveal-item">
+          <span class="text-xs uppercase tracking-[0.26em] text-lotusGreen font-semibold block mb-3">Chương IV • Vị Giác Miền Phù Sa</span>
+          <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] mb-6">
+            Thực Đơn <span class="italic text-lotusGold">Tinh Hoa</span> Mùa Nước Nổi
+          </h1>
+          <p class="text-base sm:text-lg text-charcoal/75 leading-relaxed">
+            Ẩm thực Đồng Tháp là sự hòa quyện tinh tế giữa sản vật hào phóng của thiên nhiên đồng ruộng và sự khéo léo trong cách chế biến của người dân Nam Bộ. Bấm vào từng món để khám phá câu chuyện nguồn gốc.
+          </p>
+        </div>
+
+        <!-- Bảng Thực Đơn Cao Cấp (Editorial Menu Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="culinaryMenuGrid">
+          <!-- Dữ liệu món ăn sẽ được render động bằng JS để kết nối mượt mà với Modal chi tiết -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TRANG 5: TRẮC NGHIỆM KHÁM PHÁ ĐỒNG THÁP (QUIZ)
+         ====================================================================== -->
+    <section id="page-trac-nghiem" class="page-view pt-28 sm:pt-36 pb-24 min-h-screen relative">
+      <!-- Canvas Pháo Hoa Giấy (Confetti JS thuần khi đạt điểm >= 8/10) -->
+      <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
+      <div class="max-w-4xl mx-auto px-5 sm:px-8 relative">
+        <div class="watermark-number text-[9rem] sm:text-[13rem] absolute -top-8 right-0">05</div>
+
+        <!-- Tiêu đề Trang Trắc Nghiệm -->
+        <div class="text-center mb-12 reveal-item">
+          <span class="text-xs uppercase tracking-[0.26em] text-lotusGreen font-semibold block mb-2">Chương V • Thử Thách Tri Thức</span>
+          <h1 class="font-serif text-4xl sm:text-6xl font-normal mb-4">
+            Bạn Hiểu Bao Nhiêu Về <span class="italic text-lotusPink">Đất Sen Hồng?</span>
+          </h1>
+          <p class="text-sm sm:text-base text-charcoal/75 max-w-xl mx-auto">
+            Hệ thống chọn ngẫu nhiên <strong>10 câu hỏi</strong> từ ngân hàng 20 câu hỏi chuyên sâu về lịch sử, địa lý, văn hóa và ẩm thực Đồng Tháp. Đạt từ 8/10 điểm để nhận danh hiệu Đại sứ Đất Sen Hồng!
+          </p>
+        </div>
+
+        <!-- Màn hình Bắt đầu Quiz -->
+        <div id="quizStartScreen" class="bg-paperDark/80 border border-charcoal/10 rounded-3xl p-8 sm:p-12 text-center shadow-xl reveal-item">
+          <div class="w-16 h-16 rounded-full bg-lotusGreen/10 text-lotusGreen mx-auto flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <h2 class="font-serif text-3xl font-medium mb-3">Sẵn Sàng Chinh Phục 10 Thử Thách?</h2>
+          <p class="text-sm text-charcoal/70 max-w-md mx-auto mb-8">
+            Mỗi câu hỏi có 4 phương án được xáo trộn tự động. Chọn đáp án chính xác để mở khóa phần giải thích kiến thức thú vị.
+          </p>
+          <button id="startQuizBtn" class="btn-editorial btn-primary">
+            <span>Bắt đầu lượt chơi mới</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Màn hình Đang Làm Bài (Card UI) -->
+        <div id="quizPlayScreen" class="hidden">
+          <!-- Thanh tiến độ & Điểm số -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between text-xs uppercase tracking-widest font-semibold text-charcoal/70 mb-2.5">
+              <span id="quizProgressText">Câu hỏi 01 / 10</span>
+              <span id="quizScoreBadge" class="text-lotusGreen">Điểm hiện tại: 0</span>
+            </div>
+            <div class="w-full h-2 bg-charcoal/10 rounded-full overflow-hidden">
+              <div id="quizProgressBar" class="h-full bg-gradient-to-r from-lotusGreen via-lotusGold to-lotusPink rounded-full transition-all duration-500 ease-out" style="width: 10%;"></div>
+            </div>
+          </div>
+
+          <!-- Thẻ Câu Hỏi (Card UI) -->
+          <div id="quizCard" class="bg-paper border border-charcoal/15 rounded-3xl p-6 sm:p-10 shadow-xl">
+            <span id="quizCategoryTag" class="inline-block px-3 py-1 rounded-full bg-lotusGold/15 text-charcoal text-xs font-semibold tracking-wider mb-4">
+              Lịch sử & Địa lý
+            </span>
+            <h2 id="quizQuestionText" class="font-serif text-2xl sm:text-3xl font-semibold text-charcoal leading-snug mb-8">
+              Nội dung câu hỏi sẽ hiển thị tại đây...
+            </h2>
+
+            <!-- Danh sách 4 đáp án -->
+            <div id="quizOptionsContainer" class="space-y-3.5"></div>
+
+            <!-- Hộp giải thích kiến thức sau khi chọn -->
+            <div id="quizExplanationBox" class="hidden mt-7 p-5 rounded-2xl bg-lotusGreen/8 border border-lotusGreen/20">
+              <p class="text-xs uppercase tracking-widest font-semibold text-lotusGreen mb-1">Góc Tri Thức Đồng Tháp</p>
+              <p id="quizExplanationText" class="text-sm text-charcoal/85 leading-relaxed"></p>
+            </div>
+
+            <!-- Nút Câu tiếp theo -->
+            <div class="mt-8 flex justify-end">
+              <button id="nextQuestionBtn" class="hidden btn-editorial btn-primary">
+                <span>Câu tiếp theo</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Màn hình Tổng Kết Điểm Số -->
+        <div id="quizResultScreen" class="hidden bg-paper border border-charcoal/15 rounded-3xl p-8 sm:p-12 text-center shadow-2xl">
+          <span id="resultBadgeTag" class="inline-block px-4 py-1.5 rounded-full bg-lotusGold/20 text-charcoal text-xs uppercase tracking-[0.2em] font-semibold mb-4">
+            Kết Quả Hành Trình
+          </span>
+          <div class="font-serif text-6xl sm:text-7xl font-bold text-lotusGreen my-2">
+            <span id="finalScoreNumber">8</span><span class="text-3xl text-charcoal/40">/10</span>
+          </div>
+          <h2 id="resultRankTitle" class="font-serif text-3xl sm:text-4xl font-semibold mt-3 mb-3">
+            Đại Sứ Đất Sen Hồng
+          </h2>
+          <p id="resultMessage" class="text-charcoal/75 max-w-lg mx-auto text-sm sm:text-base leading-relaxed mb-8">
+            Xin chúc mừng! Bạn sở hữu vốn hiểu biết sâu sắc và tình yêu đặc biệt dành cho văn hóa, lịch sử tỉnh Đồng Tháp.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button id="restartQuizBtn" class="btn-editorial btn-primary">
+              <span>Chơi lại bộ đề mới</span>
+            </button>
+            <button data-page="trang-chu" class="nav-trigger btn-editorial btn-outline">
+              <span>Về Trang chủ Tạp chí</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       MODAL CHI TIẾT MÓN ĂN (TRANG 4 - ẨM THỰC ĐẶC SẢN)
+       ======================================================================== -->
+  <div id="foodModal" class="fixed inset-0 z-[2000] hidden items-center justify-center p-4 sm:p-6 bg-charcoal/70 backdrop-blur-sm opacity-0 transition-opacity duration-300" aria-modal="true" role="dialog">
+    <div id="foodModalContent" class="bg-paper text-charcoal rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-charcoal/15 transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
+      <div class="relative h-60 sm:h-72 shrink-0">
+        <img id="modalFoodImg" src="" alt="" class="w-full h-full object-cover" />
+        <button id="closeFoodModalBtn" aria-label="Đóng cửa sổ" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-charcoal/75 text-paper hover:bg-lotusPink hover:text-charcoal flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="absolute bottom-4 left-6">
+          <span id="modalFoodOrigin" class="px-3.5 py-1 rounded-full bg-paper/90 text-lotusGreen text-xs font-semibold uppercase tracking-wider shadow">
+            Đặc sản Sa Đéc
+          </span>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-5">
+        <h3 id="modalFoodTitle" class="font-serif text-3xl sm:text-4xl font-semibold text-charcoal"></h3>
+        
+        <div>
+          <h4 class="text-xs uppercase tracking-[0.2em] text-lotusGold font-semibold mb-1.5">Câu Chuyện Nguồn Gốc</h4>
+          <p id="modalFoodStory" class="text-sm sm:text-base text-charcoal/80 leading-relaxed"></p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-charcoal/10">
+          <div class="bg-paperDark/70 p-4 rounded-2xl">
+            <h4 class="text-xs uppercase tracking-widest text-lotusGreen font-semibold mb-1">Hương Vị Đặc Trưng</h4>
+            <p id="modalFoodFlavor" class="text-sm text-charcoal/80"></p>
+          </div>
+          <div class="bg-paperDark/70 p-4 rounded-2xl">
+            <h4 class="text-xs uppercase tracking-widest text-lotusGreen font-semibold mb-1">Nguyên Liệu Cốt Lõi</h4>
+            <p id="modalFoodIngredients" class="text-sm text-charcoal/80"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FOOTER TẠP CHÍ NGHỆ THUẬT
+       ======================================================================== -->
+  <footer class="bg-charcoal text-paper/85 border-t border-paper/10 pt-20 pb-12">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-paper/10">
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3 text-paper">
+            <span class="font-serif text-3xl font-semibold tracking-wider">ĐỒNG THÁP</span>
+            <span class="text-lotusPink">•</span>
+            <span class="text-xs uppercase tracking-[0.25em] text-lotusGold">Đất Sen Hồng</span>
+          </div>
+          <p class="text-sm text-paper/65 max-w-sm leading-relaxed">
+            Ấn phẩm số tôn vinh vẻ đẹp thiên nhiên, chiều sâu văn hóa khẩn hoang và hồn cốt ẩm thực vùng đất Đồng Tháp — Đồng bằng sông Cửu Long.
+          </p>
+        </div>
+
+        <div class="md:col-span-4 space-y-3">
+          <h4 class="text-xs uppercase tracking-[0.25em] text-lotusGold font-semibold">Chuyên Mục</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#trang-chu" data-page="trang-chu" class="nav-trigger hover:text-lotusPink transition-colors">01. Trang chủ — Lời ngỏ biên tập</a></li>
+            <li><a href="#van-hoa" data-page="van-hoa" class="nav-trigger hover:text-lotusPink transition-colors">02. Lịch sử & Văn hóa khẩn hoang</a></li>
+            <li><a href="#du-lich" data-page="du-lich" class="nav-trigger hover:text-lotusPink transition-colors">03. Du lịch & Điểm đến di sản</a></li>
+            <li><a href="#am-thuc" data-page="am-thuc" class="nav-trigger hover:text-lotusPink transition-colors">04. Ẩm thực đặc sản mùa nước nổi</a></li>
+            <li><a href="#trac-nghiem" data-page="trac-nghiem" class="nav-trigger hover:text-lotusPink transition-colors">05. Trắc nghiệm Khám phá Đồng Tháp</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="text-xs uppercase tracking-[0.25em] text-lotusGold font-semibold">Thông Điệp Địa Phương</h4>
+          <p class="font-serif italic text-2xl text-lotusPink leading-snug">
+            “Đồng Tháp — Thuần khiết như hồn sen”
+          </p>
+          <p class="text-xs text-paper/50 pt-2">
+            Tỉnh Đồng Tháp, Đồng bằng sông Cửu Long, Việt Nam.
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-paper/50 gap-4">
+        <p>© 2025 Tạp Chí Văn Hóa & Du Lịch Đồng Tháp. Thiết kế theo phong cách Editorial Magazine.</p>
+        <p>Chú thích ảnh: Có thể thay thế trực tiếp các đường dẫn ảnh thực tế trong mã nguồn HTML/JS.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       JAVASCRIPT: ANIMATIONS, SPA ROUTING, CULINARY MODAL & 20-QUESTION QUIZ
+       ======================================================================== -->
+  <script>
+    /**
+     * ========================================================================
+     * PHẦN 1: DỮ LIỆU ẨM THỰC ĐẶC SẢN ĐỒNG THÁP (TRANG 4)
+     * ========================================================================
+     */
+    const CULINARY_DATA = [
+      {
+        id: 'hu-tieu-sa-dec',
+        number: '01',
+        name: 'Hủ Tiếu Sa Đéc',
+        region: 'TP. Sa Đéc',
+        tag: 'Di sản ẩm thực trăm năm',
+        shortDesc: 'Sợi hủ tiếu trắng ngần làm từ bột gạo làng Tân Phú Đông dẻo mềm, không chua, chan nước dùng hầm xương trong veo ngọt thanh.',
+        image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/800x600/C89D54/1C2520?text=Hu+Tieu+Sa+Dec',
+        story: 'Ra đời từ đầu thế kỷ XX tại làng bột Sa Đéc bên bờ sông Tiền, hủ tiếu Sa Đéc nổi tiếng nhờ nguồn nước sông ngọt lành và bí quyết chọn giống gạo Nàng Thơm cho ra sợi bánh to, mềm mượt, thơm mùi gạo mới mà không hề bở nát.',
+        flavor: 'Ngọt thanh tự nhiên từ xương ống hầm nhiều giờ kết hợp tôm tươi, thịt nạc, gan heo và hành phi thơm lừng.',
+        ingredients: 'Bột gạo làng bột Sa Đéc, xương ống heo, tôm sú sông Tiền, thịt nạc, hẹ lá, giá đỗ và tương ớt xào thủ công.'
+      },
+      {
+        id: 'lau-ca-linh-dien-dien',
+        number: '02',
+        name: 'Lẩu Cá Linh Bông Điên Điển',
+        region: 'Vùng Đồng Tháp Mười',
+        tag: 'Tinh hoa mùa nước nổi',
+        shortDesc: 'Bản giao hưởng sắc vàng rực rỡ của bông điên điển giòn ngọt hòa quyện cùng vị béo ngậy của cá linh non đầu mùa lũ.',
+        image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/800x600/2D4F3E/FAF7F2?text=Lau+Ca+Linh+Bong+Dien+Dien',
+        story: 'Mỗi độ tháng 8 đến tháng 10 âm lịch, khi con nước từ thượng nguồn Mê Kông đổ về trắng đồng, cá linh non theo dòng phù sa bơi về cùng lúc những rặng điên điển ven bờ trổ bông vàng rực — tạo nên món ngon biểu tượng chỉ có ở mùa nước nổi.',
+        flavor: 'Chua thanh dịu nhẹ của me non, vị béo mềm tan ngay đầu lưỡi của cá linh non và độ giòn bùi đặc trưng của bông điên điển.',
+        ingredients: 'Cá linh non làm sạch, bông điên điển tươi hái sớm, nước dừa xiêm, me non, bông súng, rau nhút và nước mắm nhĩ ớt hiểm.'
+      },
+      {
+        id: 'nem-lai-vung',
+        number: '03',
+        name: 'Nem Lai Vung',
+        region: 'Huyện Lai Vung',
+        tag: 'Đặc sản tiến vua trứ danh',
+        shortDesc: 'Những chiếc nem gói lá chuối xanh mướt, mở ra sắc hồng đào bắt mắt, vị chua thanh, ngọt dịu, giòn sần sật của bì heo.',
+        image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/800x600/D98A9C/1C2520?text=Nem+Lai+Vung',
+        story: 'Xuất phát từ làng Tân Thành (Lai Vung) từ thập niên 1960, nghề làm nem Lai Vung đã được công nhận Di sản văn hóa phi vật thể quốc gia. Tỷ lệ vàng 8 phần thịt nạc quết nhuyễn, 2 phần bì thái sợi mảnh cùng lá vông nem giúp nem lên men tự nhiên hoàn hảo.',
+        flavor: 'Hài hòa trọn vẹn bốn vị chua – cay – mặn – ngọt, điểm xuyết hương thơm nồng ấm của tiêu sọ nguyên hạt và tỏi Lý Sơn.',
+        ingredients: 'Thịt đùi heo tươi, bì heo luộc thái sợi, thính gạo rang, lá vông non, tiêu hạt, tỏi và lá chuối tươi.'
+      },
+      {
+        id: 'chuot-dong-quay-lu',
+        number: '04',
+        name: 'Chuột Đồng Quay Lu',
+        region: 'Cao Lãnh & Tháp Mười',
+        tag: 'Mỹ vị đồng quê dân dã',
+        shortDesc: 'Món đặc sản nức tiếng sau mùa gặt lúa: da vàng óng giòn rụm, thịt săn chắc ngọt thơm ăn kèm xoài xanh và muối tiêu chanh.',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/800x600/C89D54/1C2520?text=Chuot+Dong+Quay+Lu',
+        story: 'Vào mùa lúa chín rộ trên các cánh đồng Đồng Tháp Mười, chuột đồng ăn lúa nên thịt rất sạch, béo và săn chắc. Người dân sáng tạo ra cách quay trong lu đất nung giữ nhiệt đều, liên tục phết mật ong và nước dừa để lớp da giòn tan vàng ruộm.',
+        flavor: 'Lớp da giòn rụm thơm mùi ngũ vị hương và mật ong rừng, thớ thịt bên trong mềm ngọt tự nhiên không hề ngấy.',
+        ingredients: 'Chuột đồng mùa gặt làm sạch, mật ong hoa tràm, ngũ vị hương, tỏi băm, rau răm, xoài keo băm sợi và chuối chát.'
+      },
+      {
+        id: 'banh-xeo-cao-lanh',
+        number: '05',
+        name: 'Bánh Xèo Cao Lãnh',
+        region: 'TP. Cao Lãnh',
+        tag: 'Hương vị miệt vườn sông Tiền',
+        shortDesc: 'Vỏ bánh đổ mỏng giòn rụm vàng ươm nghệ tươi, nhân củ sắn, thịt vịt xiêm băm nhuyễn, tôm sông cuốn cùng hàng chục loại rau rừng.',
+        image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/800x600/2D4F3E/FAF7F2?text=Banh+Xeo+Cao+Lanh',
+        story: 'Khác với bánh xèo nhiều nơi, bánh xèo Cao Lãnh mang đậm phong vị miệt vườn Đồng Tháp khi kết hợp bột gạo pha nước cốt dừa béo ngậy cùng hơn 20 loại lá vườn nhà như đọt xoài, lá cách, bằng lăng, cải xanh.',
+        flavor: 'Vỏ bánh giòn tan béo ngậy cốt dừa, cân bằng hoàn hảo bởi vị chát nhẹ, thanh mát của rau rừng và nước mắm chua ngọt.',
+        ingredients: 'Bột gạo xay mịn, nước cốt dừa, bột nghệ, tôm đất, thịt vịt băm, củ sắn, giá đỗ và rổ rau vườn 20 loại lá.'
+      },
+      {
+        id: 'tra-tim-sen-hat-sen',
+        number: '06',
+        name: 'Trà Tim Sen & Hạt Sen Sấy',
+        region: 'Huyện Tháp Mười',
+        tag: 'Quốc hồn quốc túy Đất Sen Hồng',
+        shortDesc: 'Tinh túy từ những đầm sen bát ngát Tháp Mười: hạt sen giòn bùi thanh khiết kết hợp tách trà tim sen giúp an thần, thư thái.',
+        image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/800x600/D98A9C/1C2520?text=Tra+Tim+Sen+Dong+Thap',
+        story: 'Huyện Tháp Mười là vùng trồng sen lớn nhất tỉnh Đồng Tháp. Từ cây sen, người dân đã chế biến thành hàng chục sản phẩm OCOP tinh túy, trong đó trà tim sen sao vàng hạ thổ và hạt sen sấy chân không giữ trọn dưỡng chất thiên nhiên.',
+        flavor: 'Trà có vị đắng nhẹ thanh tao nơi đầu lưỡi và hậu ngọt sâu lắng; hạt sen giòn tan, bùi béo tự nhiên.',
+        ingredients: 'Tim sen nguyên chất thu hái từ đầm sen Tháp Mười, hạt sen tươi tách vỏ bỏ tim sấy giòn công nghệ cao.'
+      }
+    ];
+
+    /**
+     * ========================================================================
+     * PHẦN 2: NGÂN HÀNG 20 CÂU HỎI CHUYÊN SÂU VỀ ĐỒNG THÁP (TRANG 5 - QUIZ)
+     * ========================================================================
+     */
+    const QUIZ_BANK = [
+      {
+        category: 'Biểu tượng & Địa lý',
+        question: 'Khẩu hiệu (Slogan) du lịch và nhận diện thương hiệu chính thức của tỉnh Đồng Tháp là gì?',
+        options: [
+          'Đồng Tháp — Thuần khiết như hồn sen',
+          'Đồng Tháp — Thủ phủ hoa kiểng miền Tây',
+          'Đồng Tháp — Vùng đất tràm chim huyền thoại',
+          'Đồng Tháp — Sắc màu sông nước phương Nam'
+        ],
+        correct: 0,
+        explanation: '“Đồng Tháp — Thuần khiết như hồn sen” là thông điệp thương hiệu gắn liền với hình ảnh Bé Sen và loài hoa biểu tượng của tỉnh.'
+      },
+      {
+        category: 'Sinh thái & Bảo tồn',
+        question: 'Vườn Quốc gia Tràm Chim (huyện Tam Nông) được công nhận là khu Ramsar thứ mấy của Việt Nam và thứ mấy của thế giới?',
+        options: [
+          'Thứ 4 của Việt Nam và thứ 2.000 của thế giới',
+          'Thứ 2 của Việt Nam và thứ 1.500 của thế giới',
+          'Thứ 5 của Việt Nam và thứ 2.200 của thế giới',
+          'Thứ 1 của Việt Nam và thứ 1.000 của thế giới'
+        ],
+        correct: 0,
+        explanation: 'Vườn Quốc gia Tràm Chim được công nhận là khu Ramsar (vùng đất ngập nước có tầm quan trọng quốc tế) thứ 4 tại Việt Nam và thứ 2.000 trên toàn thế giới.'
+      },
+      {
+        category: 'Sinh thái & Bảo tồn',
+        question: 'Loài chim quý hiếm nào được xem là biểu tượng bảo tồn tại Vườn Quốc gia Tràm Chim, nổi tiếng với vũ điệu mùa xuân?',
+        options: [
+          'Sếu đầu đỏ (Grus antigone)',
+          'Giang sen mỏ vàng',
+          'Cò thìa mặt đen',
+          'Bồ nông chân xám'
+        ],
+        correct: 0,
+        explanation: 'Sếu đầu đỏ là loài chim nằm trong Sách Đỏ thế giới, thường bay về Tràm Chim kiếm ăn và múa giao duyên vào mùa khô.'
+      },
+      {
+        category: 'Văn hóa & Kiến trúc',
+        question: 'Ngôi nhà cổ Huỳnh Thủy Lê bên bờ rạch Sa Đéc gắn liền với tác phẩm văn học nổi tiếng nào của nữ văn sĩ Marguerite Duras?',
+        options: [
+          'Người Tình (L’Amant)',
+          'Cánh Đồng Bất Tận',
+          'Đất Rừng Phương Nam',
+          'Mùa Len Trâu'
+        ],
+        correct: 0,
+        explanation: 'Cuốn tiểu thuyết tự truyện “Người Tình” (L’Amant - 1984) đoạt giải Goncourt của Marguerite Duras kể về mối tình có thật giữa bà và công tử Huỳnh Thủy Lê tại Sa Đéc.'
+      },
+      {
+        category: 'Làng nghề truyền thống',
+        question: 'Nét độc đáo trong cách trồng hoa tại Làng hoa kiểng Sa Đéc hơn trăm năm tuổi là gì?',
+        options: [
+          'Trồng hoa trên các giàn cao phía trên mặt nước rạch',
+          'Trồng hoa trong nhà kính trên đồi cao',
+          'Trồng hoa hoàn toàn trên cát biển',
+          'Chỉ trồng duy nhất một giống hoa sen hồng'
+        ],
+        correct: 0,
+        explanation: 'Do địa hình ven sông chịu ảnh hưởng thủy triều, người dân Sa Đéc cắm cọc làm giàn cao trên mặt nước và chèo xuồng chăm sóc hoa quanh năm.'
+      },
+      {
+        category: 'Di tích lịch sử',
+        question: 'Khu di tích Cụ Phó bảng Nguyễn Sinh Sắc tọa lạc tại địa phương nào của tỉnh Đồng Tháp?',
+        options: [
+          'Thành phố Cao Lãnh',
+          'Thành phố Sa Đéc',
+          'Thành phố Hồng Ngự',
+          'Huyện Tháp Mười'
+        ],
+        correct: 0,
+        explanation: 'Khu di tích Cụ Phó bảng Nguyễn Sinh Sắc (thân sinh Chủ tịch Hồ Chí Minh) nằm tại Phường 4, TP. Cao Lãnh, nơi cụ từng sinh sống, bốc thuốc chữa bệnh giúp dân.'
+      },
+      {
+        category: 'Lịch sử kháng chiến',
+        question: 'Khu di tích Xẻo Quýt (huyện Cao Lãnh) từng là căn cứ hoạt động bí mật của cơ quan nào trong giai đoạn 1960–1975?',
+        options: [
+          'Cơ quan Tỉnh ủy Kiến Phong (nay là Đồng Tháp)',
+          'Bộ Tư lệnh Quân khu 7',
+          'Trung ương Cục miền Bắc',
+          'Đồn điền cao su thời Pháp'
+        ],
+        correct: 0,
+        explanation: 'Xẻo Quýt rộng khoảng 50ha với rừng tràm nguyên sinh rậm rạp từng là căn cứ chiến lược của Tỉnh ủy Kiến Phong trong kháng chiến chống Mỹ.'
+      },
+      {
+        category: 'Ẩm thực đặc sản',
+        question: 'Món lẩu đặc sản trứ danh của Đồng Tháp mỗi độ mùa nước nổi về là sự kết hợp giữa cá linh non và loài bông nào?',
+        options: [
+          'Bông điên điển',
+          'Bông lục bình',
+          'Bông so đũa trắng',
+          'Bông bí đỏ'
+        ],
+        correct: 0,
+        explanation: 'Lẩu cá linh bông điên điển là tinh hoa ẩm thực mùa nước nổi Đồng Tháp Mười với sắc vàng rực và vị giòn ngọt đặc trưng.'
+      },
+      {
+        category: 'Làng nghề truyền thống',
+        question: 'Làng nghề dệt chiếu Định Yên (huyện Lấp Vò) nổi tiếng gắn liền với phiên chợ độc đáo nào?',
+        options: [
+          'Chợ chiếu họp lúc nửa đêm (thường gọi là “Chợ ma”)',
+          'Chợ nổi trên ngã bảy sông Tiền',
+          'Chợ phiên chỉ họp một lần mỗi năm',
+          'Chợ trao đổi hàng hóa không dùng tiền'
+        ],
+        correct: 0,
+        explanation: 'Xưa kia do phụ thuộc con nước thủy triều ghe thương lái cập bến lúc khuya, người dân Định Yên thắp đèn dầu bán chiếu tạo nên nét văn hóa “chợ ma” độc đáo.'
+      },
+      {
+        category: 'Địa lý hành chính',
+        question: 'Hai con sông lớn nào chảy qua địa phận tỉnh Đồng Tháp, bồi đắp nguồn phù sa màu mỡ quanh năm?',
+        options: [
+          'Sông Tiền và sông Hậu',
+          'Sông Vàm Cỏ Đông và sông Sài Gòn',
+          'Sông Cổ Chiên và sông Hàm Luông',
+          'Sông Đồng Nai và sông Thị Vải'
+        ],
+        correct: 0,
+        explanation: 'Đồng Tháp nằm kẹp giữa sông Tiền (chảy xuyên qua giữa tỉnh) và sông Hậu (giáp ranh phía Tây Nam), tạo nên mạng lưới kênh rạch chằng chịt.'
+      },
+      {
+        category: 'Lịch sử & Anh hùng',
+        question: 'Hai vị anh hùng dân tộc nào đã lãnh đạo cuộc khởi nghĩa chống Pháp vang dội tại căn cứ Gò Tháp thế kỷ XIX?',
+        options: [
+          'Thiên Hộ Võ Duy Dương và Đốc Binh Nguyễn Tấn Kiều',
+          'Trương Định và Nguyễn Trung Trực',
+          'Thủ Khoa Huân và Phan Thanh Giản',
+          'Nguyễn Hữu Huân và Quản Cơ Thành'
+        ],
+        correct: 0,
+        explanation: 'Thiên Hộ Võ Duy Dương và Đốc Binh Nguyễn Tấn Kiều đã lập đại bản doanh tại Gò Tháp (Đồng Tháp Mười), gây cho thực dân Pháp nhiều tổn thất nặng nề.'
+      },
+      {
+        category: 'Nông sản & Đặc sản',
+        question: 'Huyện nào của tỉnh Đồng Tháp được mệnh danh là “Vương quốc quýt hồng” với những vườn quýt sai trĩu quả mỗi dịp Tết?',
+        options: [
+          'Huyện Lai Vung',
+          'Huyện Tân Hồng',
+          'Huyện Thanh Bình',
+          'Huyện Châu Thành'
+        ],
+        correct: 0,
+        explanation: 'Quýt hồng Lai Vung nổi tiếng khắp cả nước nhờ vỏ mỏng, màu đỏ cam rực rỡ, mọng nước và vị ngọt thanh dịu nhẹ.'
+      },
+      {
+        category: 'Làng nghề truyền thống',
+        question: 'Làng nghề đóng xuồng ghe Bà Đài (xã Long Hậu, huyện Lai Vung) đã được công nhận danh hiệu gì?',
+        options: [
+          'Di sản văn hóa phi vật thể quốc gia',
+          'Di sản thiên nhiên thế giới UNESCO',
+          'Khu bảo tồn biển quốc gia',
+          'Làng cổ đẹp nhất Đông Nam Á'
+        ],
+        correct: 0,
+        explanation: 'Nghề đóng xuồng ghe Bà Đài với kỹ thuật chế tác thủ công tinh xảo đã được Bộ Văn hóa, Thể thao và Du lịch ghi danh Di sản văn hóa phi vật thể quốc gia.'
+      },
+      {
+        category: 'Du lịch sinh thái',
+        question: 'Khu du lịch sinh thái Gáo Giồng nằm ở huyện nào và được ví như gì của vùng Đồng Tháp Mười?',
+        options: [
+          'Huyện Cao Lãnh — “Lá phổi xanh” của Đồng Tháp Mười',
+          'Huyện Hồng Ngự — “Thủ phủ cá tra”',
+          'Huyện Lấp Vò — “Vương quốc gạch gốm”',
+          'Huyện Tháp Mười — “Cánh đồng bất tận”'
+        ],
+        correct: 0,
+        explanation: 'Khu du lịch sinh thái Gáo Giồng thuộc xã Gáo Giồng, huyện Cao Lãnh, nổi tiếng với rừng tràm bạt ngàn và sân chim tự nhiên rộng lớn.'
+      },
+      {
+        category: 'Ẩm thực đặc sản',
+        question: 'Nguyên liệu tạo nên sợi hủ tiếu Sa Đéc trứ danh có đặc điểm nổi bật nào?',
+        options: [
+          'Sợi to, trắng ngần, dẻo mềm, không bị chua nhờ làm từ bột gạo làng Sa Đéc',
+          'Sợi màu vàng tươi làm từ trứng vịt và bột mì',
+          'Sợi trong suốt làm từ bột khoai lang tím',
+          'Sợi dẹt màu nâu làm từ gạo lứt rang'
+        ],
+        correct: 0,
+        explanation: 'Làng bột Sa Đéc hơn trăm năm tuổi cung cấp nguồn bột gạo tinh khiết giúp sợi hủ tiếu Sa Đéc dẻo dai tự nhiên và thơm mùi gạo mới.'
+      },
+      {
+        category: 'Văn hóa dân gian',
+        question: 'Làn điệu dân ca nào của tỉnh Đồng Tháp đã được công nhận là Di sản văn hóa phi vật thể quốc gia?',
+        options: [
+          'Hò Đồng Tháp',
+          'Hát Xoan Phú Thọ',
+          'Dân ca Quan họ',
+          'Hát Bài Chòi'
+        ],
+        correct: 0,
+        explanation: 'Hò Đồng Tháp mang âm hưởng khoan thai, sâu lắng, phản ánh tâm hồn hào sảng và nghĩa tình của cư dân vùng sông Tiền.'
+      },
+      {
+        category: 'Làng nghề truyền thống',
+        question: 'Làng nghề dệt choàng truyền thống hơn 100 năm tuổi làm ra chiếc khăn rằn Nam Bộ nằm ở xã nào của huyện Hồng Ngự?',
+        options: [
+          'Xã Long Khánh A',
+          'Xã Mỹ Hiệp',
+          'Xã Tân Quy Đông',
+          'Xã Phương Thịnh'
+        ],
+        correct: 0,
+        explanation: 'Làng dệt choàng Long Khánh (xã Long Khánh A, huyện Hồng Ngự) nổi tiếng với nghề dệt khăn rằn truyền thống gắn bó với đời sống người dân miền Tây.'
+      },
+      {
+        category: 'Di tích khảo cổ',
+        question: 'Khu di tích quốc gia đặc biệt Gò Tháp (huyện Tháp Mười) lưu giữ dấu tích của nền văn hóa cổ đại nào ở Nam Bộ?',
+        options: [
+          'Văn hóa Óc Eo (Vương quốc Phù Nam)',
+          'Văn hóa Đông Sơn',
+          'Văn hóa Sa Huỳnh',
+          'Văn hóa Hòa Bình'
+        ],
+        correct: 0,
+        explanation: 'Gò Tháp là trung tâm tôn giáo, kiến trúc quan trọng của nền văn hóa Óc Eo cổ đại từ thế kỷ I đến thế kỷ VII sau Công nguyên.'
+      },
+      {
+        category: 'Văn học nghệ thuật',
+        question: 'Câu ca dao nổi tiếng “Tháp Mười đẹp nhất bông sen / Việt Nam đẹp nhất có tên Bác Hồ” là sáng tác của nhà thơ nào?',
+        options: [
+          'Nhà thơ Bảo Định Giang',
+          'Nhà thơ Tố Hữu',
+          'Nhà thơ Xuân Diệu',
+          'Nhà thơ Nguyễn Duy'
+        ],
+        correct: 0,
+        explanation: 'Hai câu thơ bất hủ này do nhà thơ Bảo Định Giang sáng tác tại chiến khu Đồng Tháp Mười năm 1949 và nhanh chóng đi vào lòng dân như ca dao.'
+      },
+      {
+        category: 'Địa lý biên giới',
+        question: 'Ở phía Bắc, tỉnh Đồng Tháp có đường biên giới quốc gia dài khoảng 50km tiếp giáp với quốc gia nào?',
+        options: [
+          'Vương quốc Campuchia (tỉnh Prey Veng)',
+          'Cộng hòa Dân chủ Nhân dân Lào',
+          'Vương quốc Thái Lan',
+          'Liên bang Myanmar'
+        ],
+        correct: 0,
+        explanation: 'Đồng Tháp có đường biên giới dài khoảng 50km tiếp giáp tỉnh Prey Veng (Campuchia) với hai cửa khẩu quốc tế Thường Phước và Dinh Bà.'
+      }
+    ];
+
+    /**
+     * ========================================================================
+     * PHẦN 3: HỆ THỐNG HIỆU ỨNG ĐỘNG & ĐIỀU HƯỚNG (ANIMATIONS.JS LOGIC)
+     * ========================================================================
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      const navbar = document.getElementById('smartNavbar');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const heroParallaxBg = document.getElementById('heroParallaxBg');
+      
+      let currentPage = 'trang-chu';
+      let lastScrollY = window.scrollY;
+      let isMobileMenuOpen = false;
+
+      // ----------------------------------------------------------------------
+      // 3.1. SMART GLASSMORPHIC NAVBAR (Ẩn/hiện theo chiều cuộn & Kính mờ >50px)
+      // ----------------------------------------------------------------------
+      function updateNavbarState() {
+        const currentScrollY = window.scrollY;
+
+        // Xử lý nền kính mờ khi cuộn vượt 50px hoặc khi không ở trang chủ
+        if (currentPage !== 'trang-chu' || currentScrollY > 50) {
+          navbar.classList.remove('on-hero-top');
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.add('on-hero-top');
+          navbar.classList.remove('scrolled');
+        }
+
+        // Tự động ẩn khi cuộn xuống nhanh (>140px) và hiện mượt khi cuộn lên
+        if (!isMobileMenuOpen) {
+          if (currentScrollY > lastScrollY && currentScrollY > 160) {
+            navbar.classList.add('nav-hidden');
+          } else {
+            navbar.classList.remove('nav-hidden');
+          }
+        }
+
+        // Hiệu ứng Parallax nhẹ cho Hero banner ở Trang chủ
+        if (currentPage === 'trang-chu' && heroParallaxBg && currentScrollY < window.innerHeight) {
+          heroParallaxBg.style.transform = `scale(1.06) translateY(${currentScrollY * 0.22}px)`;
+        }
+
+        lastScrollY = currentScrollY;
+      }
+
+      window.addEventListener('scroll', updateNavbarState, { passive: true });
+
+      // ----------------------------------------------------------------------
+      // 3.2. MOBILE MENU DRAWER
+      // ----------------------------------------------------------------------
+      function toggleMobileMenu(forceClose = false) {
+        isMobileMenuOpen = forceClose ? false : !isMobileMenuOpen;
+        const bar1 = document.getElementById('bar1');
+        const bar2 = document.getElementById('bar2');
+        const bar3 = document.getElementById('bar3');
+
+        if (isMobileMenuOpen) {
+          mobileDrawer.classList.add('open');
+          navbar.classList.remove('nav-hidden');
+          navbar.classList.add('on-hero-top');
+          navbar.classList.remove('scrolled');
+          bar1.style.transform = 'translateY(8px) rotate(45deg)';
+          bar2.style.opacity = '0';
+          bar3.style.width = '1.25rem';
+          bar3.style.marginRight = '0';
+          bar3.style.transform = 'translateY(-8px) rotate(-45deg)';
+        } else {
+          mobileDrawer.classList.remove('open');
+          bar1.style.transform = '';
+          bar2.style.opacity = '1';
+          bar3.style.width = '';
+          bar3.style.marginRight = '';
+          bar3.style.transform = '';
+          updateNavbarState();
+        }
+      }
+
+      mobileMenuBtn.addEventListener('click', () => toggleMobileMenu());
+
+      // ----------------------------------------------------------------------
+      // 3.3. SCROLL REVEAL (INTERSECTION OBSERVER THÁC ĐỔ)
+      // ----------------------------------------------------------------------
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      function observePageReveals(container) {
+        const items = container.querySelectorAll('.reveal-item');
+        items.forEach((el) => {
+          el.classList.remove('is-revealed');
+          revealObserver.observe(el);
+        });
+      }
+
+      // Kích hoạt lần đầu cho Trang chủ
+      observePageReveals(document.getElementById('page-trang-chu'));
+
+      // ----------------------------------------------------------------------
+      // 3.4. CHUYỂN TRANG MƯỢT MÀ GIỮA 5 TRANG (SPA PAGE TRANSITION)
+      // ----------------------------------------------------------------------
+      function switchPage(targetPageId) {
+        if (!targetPageId || targetPageId === currentPage) {
+          toggleMobileMenu(true);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+
+        const oldSection = document.getElementById(`page-${currentPage}`);
+        const newSection = document.getElementById(`page-${targetPageId}`);
+        if (!newSection) return;
+
+        toggleMobileMenu(true);
+
+        // Fade-out trang hiện tại
+        if (oldSection) {
+          oldSection.classList.remove('visible-page');
+        }
+
+        setTimeout(() => {
+          if (oldSection) {
+            oldSection.classList.remove('active-page');
+          }
+
+          currentPage = targetPageId;
+          window.scrollTo({ top: 0, behavior: 'instant' });
+
+          // Cập nhật trạng thái active trên thanh menu
+          document.querySelectorAll('.nav-link-editorial').forEach((link) => {
+            if (link.dataset.page === targetPageId) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+
+          // Hiển thị & Fade-in trang mới
+          newSection.classList.add('active-page');
+          updateNavbarState();
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              newSection.classList.add('visible-page');
+              observePageReveals(newSection);
+            });
+          });
+        }, 260);
+      }
+
+      // Gắn sự kiện cho tất cả các nút/link chuyển trang
+      document.querySelectorAll('.nav-trigger, .mobile-nav-link').forEach((trigger) => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetPage = trigger.dataset.page;
+          if (targetPage) {
+            switchPage(targetPage);
+          }
+        });
+      });
+
+      // ----------------------------------------------------------------------
+      // 3.5. BỘ LỌC ĐIỂM ĐẾN DU LỊCH (TRANG 3)
+      // ----------------------------------------------------------------------
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const destCards = document.querySelectorAll('.dest-card');
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filterValue = btn.dataset.filter;
+
+          // Cập nhật nút active
+          filterBtns.forEach((b) => {
+            b.classList.remove('active', 'bg-lotusGreen', 'text-paper', 'border-lotusGreen');
+            b.classList.add('border-charcoal/20', 'text-charcoal');
+          });
+          btn.classList.add('active', 'bg-lotusGreen', 'text-paper', 'border-lotusGreen');
+          btn.classList.remove('border-charcoal/20', 'text-charcoal');
+
+          // Lọc thẻ mượt mà
+          destCards.forEach((card) => {
+            const category = card.dataset.category;
+            if (filterValue === 'all' || category === filterValue) {
+              card.style.display = 'block';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 30);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(16px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // ----------------------------------------------------------------------
+      // 3.6. RENDER THỰC ĐƠN ẨM THỰC & MODAL CHI TIẾT (TRANG 4)
+      // ----------------------------------------------------------------------
+      const culinaryGrid = document.getElementById('culinaryMenuGrid');
+      const foodModal = document.getElementById('foodModal');
+      const foodModalContent = document.getElementById('foodModalContent');
+      const closeFoodModalBtn = document.getElementById('closeFoodModalBtn');
+
+      function renderCulinaryMenu() {
+        culinaryGrid.innerHTML = CULINARY_DATA.map((item, idx) => `
+          <article 
+            data-food-id="${item.id}" 
+            class="food-card group cursor-pointer bg-paperDark/65 hover:bg-paper rounded-2xl overflow-hidden border border-charcoal/10 hover:border-lotusGold transition-all duration-500 hover:-translate-y-1.5 shadow-sm hover:shadow-xl flex flex-col justify-between reveal-item"
+            style="transition-delay: ${(idx % 3) * 100}ms;"
+          >
+            <div>
+              <div class="img-zoom-wrapper aspect-[4/3] relative">
+                <img src="${item.image}" onerror="this.src='${item.fallback}'" alt="${item.name}" />
+                <span class="absolute top-4 left-4 w-9 h-9 rounded-full bg-paper/90 backdrop-blur-sm text-charcoal font-serif font-semibold flex items-center justify-center text-sm shadow">
+                  ${item.number}
+                </span>
+              </div>
+              <div class="p-6 pb-4">
+                <div class="flex items-center justify-between text-xs uppercase tracking-widest text-lotusGreen font-semibold mb-2">
+                  <span>${item.region}</span>
+                  <span class="text-lotusGold">${item.tag}</span>
+                </div>
+                <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-charcoal mb-2.5 group-hover:text-lotusGreen transition-colors">
+                  ${item.name}
+                </h2>
+                <p class="text-sm text-charcoal/75 leading-relaxed">
+                  ${item.shortDesc}
+                </p>
+              </div>
+            </div>
+
+            <div class="px-6 pb-6 pt-2 flex items-center justify-between text-xs font-semibold uppercase tracking-widest text-charcoal/60 group-hover:text-lotusGreen transition-colors">
+              <span>Xem câu chuyện & hương vị</span>
+              <span class="transform group-hover:translate-x-1.5 transition-transform">→</span>
+            </div>
+          </article>
+        `).join('');
+
+        // Gắn sự kiện mở Modal cho từng thẻ món ăn
+        document.querySelectorAll('.food-card').forEach((card) => {
+          card.addEventListener('click', () => {
+            const food = CULINARY_DATA.find((f) => f.id === card.dataset.foodId);
+            if (food) openFoodModal(food);
+          });
+        });
+      }
+
+      function openFoodModal(food) {
+        document.getElementById('modalFoodImg').src = food.image;
+        document.getElementById('modalFoodImg').onerror = function() { this.src = food.fallback; };
+        document.getElementById('modalFoodImg').alt = food.name;
+        document.getElementById('modalFoodOrigin').textContent = `${food.region} • ${food.tag}`;
+        document.getElementById('modalFoodTitle').textContent = food.name;
+        document.getElementById('modalFoodStory').textContent = food.story;
+        document.getElementById('modalFoodFlavor').textContent = food.flavor;
+        document.getElementById('modalFoodIngredients').textContent = food.ingredients;
+
+        foodModal.classList.remove('hidden');
+        foodModal.classList.add('flex');
+        requestAnimationFrame(() => {
+          foodModal.classList.remove('opacity-0');
+          foodModalContent.classList.remove('scale-95');
+          foodModalContent.classList.add('scale-100');
+        });
+      }
+
+      function closeFoodModal() {
+        foodModal.classList.add('opacity-0');
+        foodModalContent.classList.remove('scale-100');
+        foodModalContent.classList.add('scale-95');
+        setTimeout(() => {
+          foodModal.classList.add('hidden');
+          foodModal.classList.remove('flex');
+        }, 300);
+      }
+
+      closeFoodModalBtn.addEventListener('click', closeFoodModal);
+      foodModal.addEventListener('click', (e) => {
+        if (e.target === foodModal) closeFoodModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !foodModal.classList.contains('hidden')) {
+          closeFoodModal();
+        }
+      });
+
+      renderCulinaryMenu();
+
+      /**
+       * ======================================================================
+       * PHẦN 4: TRẮC NGHIỆM KHÁM PHÁ ĐỒNG THÁP (QUIZ.JS LOGIC + CONFETTI)
+       * ======================================================================
+       */
+      const quizStartScreen = document.getElementById('quizStartScreen');
+      const quizPlayScreen = document.getElementById('quizPlayScreen');
+      const quizResultScreen = document.getElementById('quizResultScreen');
+      const startQuizBtn = document.getElementById('startQuizBtn');
+      const restartQuizBtn = document.getElementById('restartQuizBtn');
+      const nextQuestionBtn = document.getElementById('nextQuestionBtn');
+      const quizCard = document.getElementById('quizCard');
+
+      let currentQuestions = [];
+      let currentQuestionIdx = 0;
+      let score = 0;
+      let hasAnswered = false;
+
+      // Hàm xáo trộn mảng (Fisher-Yates Shuffle)
+      function shuffleArray(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      // Khởi tạo lượt chơi mới: Random 10 câu hỏi từ ngân hàng 20 câu & xáo trộn đáp án
+      function initQuizSession() {
+        stopConfetti();
+        const selectedRaw = shuffleArray(QUIZ_BANK).slice(0, 10);
+
+        currentQuestions = selectedRaw.map((q) => {
+          const correctText = q.options[q.correct];
+          const shuffledOptions = shuffleArray(q.options);
+          const newCorrectIndex = shuffledOptions.indexOf(correctText);
+          return {
+            category: q.category,
+            question: q.question,
+            options: shuffledOptions,
+            correct: newCorrectIndex,
+            explanation: q.explanation
+          };
+        });
+
+        currentQuestionIdx = 0;
+        score = 0;
+
+        quizStartScreen.classList.add('hidden');
+        quizResultScreen.classList.add('hidden');
+        quizPlayScreen.classList.remove('hidden');
+
+        renderQuestion();
+      }
+
+      function renderQuestion() {
+        hasAnswered = false;
+        const q = currentQuestions[currentQuestionIdx];
+
+        // Hiệu ứng trượt thẻ bài mượt mà
+        quizCard.classList.remove('quiz-card-enter', 'animate-shake');
+        void quizCard.offsetWidth; // Trigger reflow
+        quizCard.classList.add('quiz-card-enter');
+
+        // Cập nhật thanh tiến độ
+        const stepNum = currentQuestionIdx + 1;
+        document.getElementById('quizProgressText').textContent = `Câu hỏi ${stepNum < 10 ? '0' + stepNum : stepNum} / 10`;
+        document.getElementById('quizScoreBadge').textContent = `Điểm hiện tại: ${score}`;
+        document.getElementById('quizProgressBar').style.width = `${(stepNum / 10) * 100}%`;
+
+        // Nội dung câu hỏi
+        document.getElementById('quizCategoryTag').textContent = q.category;
+        document.getElementById('quizQuestionText').textContent = q.question;
+
+        // Ẩn giải thích và nút tiếp theo
+        document.getElementById('quizExplanationBox').classList.add('hidden');
+        nextQuestionBtn.classList.add('hidden');
+        nextQuestionBtn.querySelector('span').textContent = currentQuestionIdx === 9 ? 'Xem kết quả tổng kết' : 'Câu tiếp theo';
+
+        // Render 4 phương án A, B, C, D
+        const letters = ['A', 'B', 'C', 'D'];
+        const optionsContainer = document.getElementById('quizOptionsContainer');
+        optionsContainer.innerHTML = q.options.map((opt, idx) => `
+          <button 
+            data-opt-idx="${idx}" 
+            class="quiz-opt-btn w-full text-left p-4 sm:p-5 rounded-2xl border border-charcoal/15 bg-paperDark/45 hover:bg-lotusGreen/8 hover:border-lotusGreen transition-all duration-300 flex items-center gap-4 group"
+          >
+            <span class="opt-letter w-9 h-9 rounded-full border border-charcoal/20 group-hover:border-lotusGreen group-hover:bg-lotusGreen group-hover:text-paper flex items-center justify-center text-xs font-bold shrink-0 transition-colors">
+              ${letters[idx]}
+            </span>
+            <span class="text-sm sm:text-base font-medium text-charcoal leading-snug">${opt}</span>
+          </button>
+        `).join('');
+
+        document.querySelectorAll('.quiz-opt-btn').forEach((btn) => {
+          btn.addEventListener('click', () => handleOptionSelect(parseInt(btn.dataset.optIdx, 10)));
+        });
+      }
+
+      function handleOptionSelect(selectedIdx) {
+        if (hasAnswered) return;
+        hasAnswered = true;
+
+        const q = currentQuestions[currentQuestionIdx];
+        const allBtns = document.querySelectorAll('.quiz-opt-btn');
+        const isCorrect = selectedIdx === q.correct;
+
+        if (isCorrect) {
+          score++;
+          document.getElementById('quizScoreBadge').textContent = `Điểm hiện tại: ${score}`;
+        } else {
+          // Hiệu ứng rung nhẹ (shake) khi chọn sai
+          quizCard.classList.remove('animate-shake');
+          void quizCard.offsetWidth;
+          quizCard.classList.add('animate-shake');
+        }
+
+        allBtns.forEach((btn, idx) => {
+          btn.disabled = true;
+          btn.classList.remove('hover:bg-lotusGreen/8', 'hover:border-lotusGreen');
+          const letterSpan = btn.querySelector('.opt-letter');
+
+          if (idx === q.correct) {
+            btn.classList.remove('bg-paperDark/45', 'border-charcoal/15');
+            btn.classList.add('bg-lotusGreen', 'text-paper', 'border-lotusGreen', 'shadow-md');
+            btn.querySelector('span:last-child').classList.replace('text-charcoal', 'text-paper');
+            letterSpan.classList.add('bg-lotusGold', 'text-charcoal', 'border-lotusGold');
+          } else if (idx === selectedIdx && !isCorrect) {
+            btn.classList.remove('bg-paperDark/45', 'border-charcoal/15');
+            btn.classList.add('bg-red-800/12', 'border-red-700/60');
+            letterSpan.classList.add('bg-red-700', 'text-paper', 'border-red-700');
+          } else {
+            btn.classList.add('opacity-55');
+          }
+        });
+
+        // Hiển thị giải thích kiến thức
+        document.getElementById('quizExplanationText').textContent = q.explanation;
+        document.getElementById('quizExplanationBox').classList.remove('hidden');
+        nextQuestionBtn.classList.remove('hidden');
+      }
+
+      nextQuestionBtn.addEventListener('click', () => {
+        if (currentQuestionIdx < 9) {
+          currentQuestionIdx++;
+          renderQuestion();
+        } else {
+          showQuizResults();
+        }
+      });
+
+      function showQuizResults() {
+        quizPlayScreen.classList.add('hidden');
+        quizResultScreen.classList.remove('hidden');
+        quizResultScreen.classList.add('quiz-card-enter');
+
+        document.getElementById('finalScoreNumber').textContent = score;
+
+        const rankTitle = document.getElementById('resultRankTitle');
+        const resultMsg = document.getElementById('resultMessage');
+        const badgeTag = document.getElementById('resultBadgeTag');
+
+        if (score >= 8) {
+          badgeTag.textContent = 'Thành Tích Xuất Sắc • Đạt Chuẩn Vàng';
+          rankTitle.textContent = 'Đại Sứ Văn Hóa Đất Sen Hồng';
+          resultMsg.textContent = `Tuyệt vời! Với ${score}/10 câu trả lời chính xác, bạn thực sự am hiểu sâu sắc về lịch sử khẩn hoang, di sản văn hóa và tinh hoa ẩm thực Đồng Tháp.`;
+          // Bung pháo hoa giấy (Confetti) rực rỡ khi đạt >= 8/10
+          launchConfetti();
+        } else if (score >= 5) {
+          badgeTag.textContent = 'Hoàn Thành Hành Trình';
+          rankTitle.textContent = 'Người Bạn Thân Thiết Của Đồng Tháp';
+          resultMsg.textContent = `Bạn đạt ${score}/10 điểm! Bạn đã nắm bắt được nhiều nét đặc sắc của vùng đất Sen Hồng. Hãy dạo thêm các chuyên mục Văn hóa & Du lịch để chinh phục mốc 8/10 nhé!`;
+        } else {
+          badgeTag.textContent = 'Khởi Đầu Khám Phá';
+          rankTitle.textContent = 'Lữ Khách Mới Ghé Miền Phù Sa';
+          resultMsg.textContent = `Bạn đạt ${score}/10 điểm. Mỗi câu hỏi vừa rồi chính là một gợi ý thú vị cho chuyến hành trình về thăm Đồng Tháp sắp tới của bạn!`;
+        }
+      }
+
+      startQuizBtn.addEventListener('click', initQuizSession);
+      restartQuizBtn.addEventListener('click', initQuizSession);
+
+      // ----------------------------------------------------------------------
+      // 4.1. HIỆU ỨNG PHÁO HOA GIẤY CONFETTI BẰNG CANVAS JS THUẦN
+      // ----------------------------------------------------------------------
+      const confettiCanvas = document.getElementById('confettiCanvas');
+      const ctx = confettiCanvas.getContext('2d');
+      let confettiParticles = [];
+      let confettiAnimId = null;
+
+      function resizeConfettiCanvas() {
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeConfettiCanvas);
+      resizeConfettiCanvas();
+
+      function launchConfetti() {
+        resizeConfettiCanvas();
+        const palette = ['#D98A9C', '#C89D54', '#2D4F3E', '#F4C2C2', '#E6B86A', '#FAF7F2'];
+        confettiParticles = [];
+
+        for (let i = 0; i < 150; i++) {
+          confettiParticles.push({
+            x: Math.random() * confettiCanvas.width,
+            y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+            w: Math.random() * 10 + 6,
+            h: Math.random() * 6 + 4,
+            color: palette[Math.floor(Math.random() * palette.length)],
+            speedY: Math.random() * 3.2 + 2.2,
+            speedX: Math.random() * 2 - 1,
+            rotation: Math.random() * 360,
+            rotationSpeed: Math.random() * 6 - 3
+          });
+        }
+
+        function animateConfetti() {
+          ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+          let activeCount = 0;
+
+          confettiParticles.forEach((p) => {
+            p.y += p.speedY;
+            p.x += p.speedX + Math.sin(p.y * 0.02) * 0.6;
+            p.rotation += p.rotationSpeed;
+
+            if (p.y < confettiCanvas.height + 30) {
+              activeCount++;
+              ctx.save();
+              ctx.translate(p.x, p.y);
+              ctx.rotate((p.rotation * Math.PI) / 180);
+              ctx.fillStyle = p.color;
+              ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+              ctx.restore();
+            }
+          });
+
+          if (activeCount > 0) {
+            confettiAnimId = requestAnimationFrame(animateConfetti);
+          } else {
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+          }
+        }
+
+        if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+        animateConfetti();
+      }
+
+      function stopConfetti() {
+        if (confettiAnimId) {
+          cancelAnimationFrame(confettiAnimId);
+          confettiAnimId = null;
+        }
+        ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      }
+    });
+  </script>
+</body>
+</html>
